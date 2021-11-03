@@ -5,8 +5,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.KeyEvent;
 
 public class Obstacle extends GameObject{
-    boolean live = true , go = false;
-    int i = 0;
+    boolean live = true;
     double original_x = 0.0,original_y = 0.0,adjustment = 4.0;
 
     public Obstacle(Image img,double x,double y,int v0,double angle){
@@ -21,36 +20,12 @@ public class Obstacle extends GameObject{
 
     //繪製紙飛機
     public void drawSelf(Graphics g){
-        /*if(go){
-            if(i <= r(v0,angle)){
-                x = original_x + i*5;
-                y = original_y - locus(i,v0,angle)*5;
-                g.drawImage(img,(int)x,(int)y, null);
-                i = i + 2;
-            }else{
-                go = false;
-            }
-        }else{*/
-            g.drawImage(img,(int)x,(int)y, null);
-        //}
+        g.drawImage(img,(int)x,(int)y, null);
     }
 
-    //計算軌跡方程式總距離
-    public double r (int v0,double angle){
+    //計算物理碰撞
+    public double collision (int v0,double angle){
         double radians = Math.toRadians(angle);
         return 2 * Math.pow(v0,2) * Math.sin(radians) * Math.cos(radians) / 9.8;
     }
-
-    //計算軌跡方程式總時間
-    public double time(int v0,double angle){
-        double radians = Math.toRadians(angle);
-        return 2 * v0 * Math.sin(radians) / 9.8;
-    }
-
-    //軌跡方程式
-    public double locus(double x,int v0,double angle){
-        double radians = Math.toRadians(angle);
-        return (x * Math.tan(radians)) - (9.8 * Math.pow(x,2) / (2.0 * Math.pow(v0,2) * Math.pow(Math.cos(radians),2)));
-    }
 }
-
