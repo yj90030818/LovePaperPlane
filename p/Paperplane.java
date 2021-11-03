@@ -27,15 +27,16 @@ public class Paperplane extends GameObject{
                 //if(i <= removing(v0,angle)){
                     x = original_x + i * adjustment;
                     y = original_y - locus(i,v0,angle) * adjustment;
-                    g.drawImage(img,(int)x,(int)y, null);
                     i = i + 2;
                 }else{
                     go = false;
                 }
-            }else{
-                g.drawImage(img,(int)x,(int)y, null);
             }
-        }   
+        }else{
+            y = y + 1;
+        }
+        
+        g.drawImage(img,(int)x,(int)y, null);
     }
 
     //計算軌跡方程式總距離 useless
