@@ -8,14 +8,12 @@ public class Obstacle extends GameObject{
     boolean live = true;
     double original_x = 0.0,original_y = 0.0,adjustment = 4.0;
 
-    public Obstacle(Image img,double x,double y,int v0,double angle){
+    public Obstacle(Image img,double x,double y){
         this.img = img;
         this.x = x;
         this.y = y;
         this.original_x = x;
         this.original_y = y;
-        this.v0 = v0;
-        this.angle = angle;
         this.width = img.getWidth(null);
         this.height = img.getHeight(null);
     }
@@ -26,8 +24,8 @@ public class Obstacle extends GameObject{
     }
 
     //計算物理碰撞
-    public double collision (int v0,double angle){
+    /*public double collision (int v0,double angle){
         double radians = Math.toRadians(angle);
         return 2 * Math.pow(v0,2) * Math.sin(radians) * Math.cos(radians) / 9.8;
-    }
+    }*/
 }
