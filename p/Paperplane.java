@@ -38,13 +38,13 @@ public class Paperplane extends GameObject{
         }   
     }
 
-    //計算軌跡方程式總距離
+    //計算軌跡方程式總距離 useless
     public double removing (int v0,double angle){
         double radians = Math.toRadians(angle);
         return 2 * Math.pow(v0,2) * Math.sin(radians) * Math.cos(radians) / 9.8;
     }
 
-    //計算軌跡方程式總時間
+    //計算軌跡方程式總時間 useless
     public double time(int v0,double angle){
         double radians = Math.toRadians(angle);
         return 2 * v0 * Math.sin(radians) / 9.8;
@@ -60,16 +60,6 @@ public class Paperplane extends GameObject{
     public void mouseRelease(MouseEvent e){
         if(e.isMetaDown()){
             go = true;
-        }
-    }
-
-    //按鍵放開事件
-    public void keyRelease(KeyEvent e){
-        switch (e.getKeyCode()){
-            case KeyEvent.VK_UP:
-                setX(original_x);
-                setY(original_y);
-                go = false;
         }
     }
 }
