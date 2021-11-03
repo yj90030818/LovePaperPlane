@@ -50,6 +50,12 @@ public class GameFrame extends JFrame{
         plane.drawSelf(g);
         obstacle.drawSelf(g);
         slingShot.drawSelf(g);
+        
+        boolean crash = plane.getRect().intersects(obstacle.getRect());
+        if(crash){
+            plane.live = false;
+            obstacle.live = false;
+        }
     }
 
     class PaintThread extends Thread{
