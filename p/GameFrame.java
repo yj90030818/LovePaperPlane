@@ -14,8 +14,8 @@ import java.awt.event.WindowEvent;
 public class GameFrame extends JFrame{
 
     Image planeImg = GameUtil.getImage(1,"images/pp.png");
-    Image obstacleImg = GameUtil.getImage(2,"images/ps.png");
-    Image slingshotImg = GameUtil.getImage(2,"images/ps.png");
+    Image obstacleImg = GameUtil.getImage(2,"images/po.png");
+    Image slingshotImg = GameUtil.getImage(3,"images/ps.png");
     
     Paperplane plane = new Paperplane(planeImg,55,400,0,0);
     Obstacle obstacle = new Obstacle(obstacleImg,650,400,0,0);
