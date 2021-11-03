@@ -5,8 +5,8 @@ import java.awt.Rectangle;
 //遊戲物件的父類別，讓子類別可以調用父類別的方法
 public class GameObject{
     Image img;
-    int v0,width,height;
-    double x,y,angle;
+    int width,height;
+    double x,y,v0,angle;
     Paperplane plane;
 
     public GameObject(){}
@@ -19,13 +19,11 @@ public class GameObject{
         this.plane = plane;
     }
 
-    public GameObject(Image img, double x, double y, int v0, double angle){
+    public GameObject(Image img, double x, double y){
         super();
         this.img = img;
         this.x = x;
         this.y = y;
-        this.v0 = v0;
-        this.angle = angle;
     }
 
     public void drawSelf(Graphics g){
@@ -44,7 +42,7 @@ public class GameObject{
         this.y = y;
     }
 
-    public void setV0(int v0){
+    public void setV0(double v0){
         this.v0 = v0;
     }
 
@@ -58,5 +56,13 @@ public class GameObject{
 
     public double getY(){
         return y;
+    }
+    
+    public double getV0(){
+        return v0;
+    }
+    
+    public double getAngle(){
+        return angle;
     }
 }
