@@ -86,14 +86,14 @@ public class GameFrame extends JFrame{
 
         @Override
         public void mouseDragged(MouseEvent e){
-            slingShot.middlepoint(e);
+            //slingShot.middlepoint(e);
         }
     }
 
     class KeyMonitor extends KeyAdapter{
         @Override
         public void keyReleased(KeyEvent e){
-            plane.keyRelease(e);
+            //plane.keyRelease(e);
         }
     }
 }
