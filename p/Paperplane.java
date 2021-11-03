@@ -9,14 +9,12 @@ public class Paperplane extends GameObject{
     int i = 0;
     double original_x = 0.0,original_y = 0.0,adjustment = 4.0;
 
-    public Paperplane(Image img,double x,double y,int v0,double angle){
+    public Paperplane(Image img,double x,double y){
         this.img = img;
         this.x = x;
         this.y = y;
         this.original_x = x;
         this.original_y = y;
-        this.v0 = v0;
-        this.angle = angle;
         this.width = img.getWidth(null);
         this.height = img.getHeight(null);
     }
@@ -26,9 +24,9 @@ public class Paperplane extends GameObject{
         if(live){
             if(go){
                 if(y <= 550 || x <= 850){
-                //if(i <= removing(v0,angle)){
+                //if(i <= removing(getV0(),getAngle())){
                     x = original_x + i * adjustment;
-                    y = original_y - locus(i,v0,angle) * adjustment;
+                    y = original_y - locus(i,getV0(),getAngle()) * adjustment;
                     i = i + 2;
                 }else{
                     go = false;
@@ -41,22 +39,22 @@ public class Paperplane extends GameObject{
         g.drawImage(img,(int)x,(int)y, null);
     }
 
-    //計算軌跡方程式總距離 useless
-    public double removing (int v0,double angle){
+    //計算軌跡方程式總距離
+    public double removing (double v0,double angle){
         double radians = Math.toRadians(angle);
-        return 2 * Math.pow(v0,2) * Math.sin(radians) * Math.cos(radians) / 9.8;
+        return 2.0 * Math.pow(v0,2.0) * Math.sin(radians) * Math.cos(radians) / 9.8;
     }
 
     //計算軌跡方程式總時間 useless
-    public double time(int v0,double angle){
+    public double time(double v0,double angle){
         double radians = Math.toRadians(angle);
         return 2 * v0 * Math.sin(radians) / 9.8;
     }
 
     //軌跡方程式
-    public double locus(double x,int v0,double angle){
+    public double locus(double x,double v0,double angle){
         double radians = Math.toRadians(angle);
-        return (x * Math.tan(radians)) - (9.8 * Math.pow(x,2) / (2.0 * Math.pow(v0,2) * Math.pow(Math.cos(radians),2)));
+        return (x * Math.tan(radians)) - (9.8 * Math.pow(x,2.0) / (2.0 * Math.pow(v0,2.0) * Math.pow(Math.cos(radians),2.0)));
     }
 
     //滑鼠放開事件
