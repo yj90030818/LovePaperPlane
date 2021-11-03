@@ -6,7 +6,8 @@ import java.awt.event.KeyEvent;
 
 public class Slingshot extends GameObject{
     Paperplane plane;
-    boolean shoot = false; 
+    boolean shoot = false;
+    double adjustment = 4.0;
     double start_x = 0.0,start_y = 0.0,end_x = 0.0,end_y = 0.0;   //滑鼠按住和放開的座標參數
 
     public Slingshot(Image img,double x,double y,Paperplane plane){
@@ -24,9 +25,9 @@ public class Slingshot extends GameObject{
     //藉由三角形斜邊長計算初速度
     public double Force(){
         double v = 0.0;
-        v = (Math.sqrt(Math.pow((start_x - end_x),2) + Math.pow((start_y - end_y),2))) / 2.0;
-        if(v >= 50){
-            v = 50;
+        v = (Math.sqrt(Math.pow((start_x - end_x) / adjustment , 2) + Math.pow((start_y - end_y) / adjustment , 2)));
+        if(v >= 50.0){
+            v = 50.0;
         }
         return v;
     }
