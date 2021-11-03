@@ -23,6 +23,9 @@ public class GameUtil{
             image = bi.getScaledInstance(60,40,Image.SCALE_DEFAULT);
         }
         else if(num == 2){
+            image = bi.getScaledInstance(60,200,Image.SCALE_DEFAULT);
+        }
+        else if(num == 3){
             image = bi.getScaledInstance(60,100,Image.SCALE_DEFAULT);
         }
 
