@@ -7,7 +7,7 @@ import java.awt.event.KeyEvent;
 public class Paperplane extends GameObject{
     boolean live = true , go = false;
     int i = 0;
-    double original_x = 0.0,original_y = 0.0;
+    double original_x = 0.0,original_y = 0.0,adjustment = 4.0;
 
     public Paperplane(Image img,double x,double y,int v0,double angle){
         this.img = img;
@@ -21,23 +21,25 @@ public class Paperplane extends GameObject{
 
     //繪製紙飛機
     public void drawSelf(Graphics g){
-        if(go){
-            if((original_y - locus(i,v0,angle)*5) <= 550 || original_x + i*5 <= 850){
-            //if(i <= r(v0,angle)){
-                x = original_x + i*5;
-                y = original_y - locus(i,v0,angle)*5;
-                g.drawImage(img,(int)x,(int)y, null);
-                i = i + 2;
+        if(live){
+            if(go){
+                if(y <= 550 || x <= 850){
+                //if(i <= removing(v0,angle)){
+                    x = original_x + i * adjustment;
+                    y = original_y - locus(i,v0,angle) * adjustment;
+                    g.drawImage(img,(int)x,(int)y, null);
+                    i = i + 2;
+                }else{
+                    go = false;
+                }
             }else{
-                go = false;
+                g.drawImage(img,(int)x,(int)y, null);
             }
-        }else{
-            g.drawImage(img,(int)x,(int)y, null);
-        }
+        }   
     }
 
     //計算軌跡方程式總距離
-    public double r (int v0,double angle){
+    public double removing (int v0,double angle){
         double radians = Math.toRadians(angle);
         return 2 * Math.pow(v0,2) * Math.sin(radians) * Math.cos(radians) / 9.8;
     }
