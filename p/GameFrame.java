@@ -18,7 +18,7 @@ public class GameFrame extends JFrame{
     Image slingshotImg = GameUtil.getImage(3,"images/ps.png");
     
     Paperplane plane = new Paperplane(planeImg,55,400,0,0);
-    Obstacle obstacle = new Obstacle(obstacleImg,650,400,0,0);
+    Obstacle obstacle = new Obstacle(obstacleImg,650,00,0,0);
     Slingshot slingShot = new Slingshot(slingshotImg,50,400,plane);
 
     public static void main(String[] args){
