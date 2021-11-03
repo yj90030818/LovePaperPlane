@@ -16,6 +16,8 @@ public class Obstacle extends GameObject{
         this.original_y = y;
         this.v0 = v0;
         this.angle = angle;
+        this.width = img.getWidth(null);
+        this.height = img.getHeight(null);
     }
 
     //繪製紙飛機
