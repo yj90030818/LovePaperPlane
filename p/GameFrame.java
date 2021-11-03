@@ -14,9 +14,11 @@ import java.awt.event.WindowEvent;
 public class GameFrame extends JFrame{
 
     Image planeImg = GameUtil.getImage(1,"images/pp.png");
+    Image obstacleImg = GameUtil.getImage(2,"images/ps.png");
     Image slingshotImg = GameUtil.getImage(2,"images/ps.png");
     
     Paperplane plane = new Paperplane(planeImg,55,400,0,0);
+    Obstacle obstacle = new Obstacle(obstacleImg,650,400,0,0);
     Slingshot slingShot = new Slingshot(slingshotImg,50,400,plane);
 
     public static void main(String[] args){
@@ -46,6 +48,7 @@ public class GameFrame extends JFrame{
         g.setColor(Color.WHITE);
         g.fillRect(0,0,800,500);
         plane.drawSelf(g);
+        obstacle.drawSelf(g);
         slingShot.drawSelf(g);
     }
 
