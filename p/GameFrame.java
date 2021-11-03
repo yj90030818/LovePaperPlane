@@ -51,6 +51,7 @@ public class GameFrame extends JFrame{
         obstacle.drawSelf(g);
         slingShot.drawSelf(g);
         
+        //矩形相交判斷是否撞上
         boolean crash = plane.getRect().intersects(obstacle.getRect());
         if(crash){
             plane.live = false;
