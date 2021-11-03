@@ -7,14 +7,14 @@ import java.awt.event.KeyEvent;
 public class Obstacle extends GameObject{
     boolean live = true , go = false;
     int i = 0;
-    double xx = 0.0,yy = 0.0;
+    double original_x = 0.0,original_y = 0.0,adjustment = 4.0;
 
     public Obstacle(Image img,double x,double y,int v0,double angle){
         this.img = img;
         this.x = x;
         this.y = y;
-        this.xx = x;
-        this.yy = y;
+        this.original_x = x;
+        this.original_y = y;
         this.v0 = v0;
         this.angle = angle;
     }
@@ -23,8 +23,8 @@ public class Obstacle extends GameObject{
     public void drawSelf(Graphics g){
         /*if(go){
             if(i <= r(v0,angle)){
-                x = xx + i*5;
-                y = yy - locus(i,v0,angle)*5;
+                x = original_x + i*5;
+                y = original_y - locus(i,v0,angle)*5;
                 g.drawImage(img,(int)x,(int)y, null);
                 i = i + 2;
             }else{
@@ -51,24 +51,6 @@ public class Obstacle extends GameObject{
     public double locus(double x,int v0,double angle){
         double radians = Math.toRadians(angle);
         return (x * Math.tan(radians)) - (9.8 * Math.pow(x,2) / (2.0 * Math.pow(v0,2) * Math.pow(Math.cos(radians),2)));
-    }
-
-    //滑鼠放開事件
-    public void mouseRelease(MouseEvent e){
-        if(e.isMetaDown()){
-            go = true;
-        }
-    }
-
-    //按鍵放開事件
-    public void keyRelease(KeyEvent e){
-        switch (e.getKeyCode()){
-            case KeyEvent.VK_UP:
-                setX(xx);
-                setY(yy);
-                go = false;
-                break;
-        }
     }
 }
 
