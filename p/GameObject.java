@@ -26,8 +26,6 @@ public class GameObject{
         this.y = y;
         this.v0 = v0;
         this.angle = angle;
-        this.width = img.getWidth(null);
-        this.height = img.getHeight(null);
     }
 
     public void drawSelf(Graphics g){
