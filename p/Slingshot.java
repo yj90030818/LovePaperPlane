@@ -44,11 +44,11 @@ public class Slingshot extends GameObject{
         start_y = e.getY();
     }
 
-    //滑鼠拖移事件
-    public void middlepoint(MouseEvent e){
+    //滑鼠拖移事件 useless
+    /*public void middlepoint(MouseEvent e){
         plane.setX(e.getX());
         plane.setY(e.getY());
-    }
+    }*/
     
     //滑鼠放開事件
     public void lastpoint(MouseEvent e){
