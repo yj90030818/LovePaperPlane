@@ -25,17 +25,15 @@ public class GameFrame extends JFrame{
     Paperplane plane = new Paperplane(55, 400, 1, "images/pp.png");
     Obstacle obstacle = new Obstacle(650, 300, 2,"images/po.png");
     Slingshot slingShot = new Slingshot(50, 400, 3,"images/ps.png", plane);
-    GameFrame f;
     
     public static void main(String[] args){
-        f = new GameFrame();
+        GameFrame f = new GameFrame();
         f.launchFrame();
     }
 
     public void launchFrame(){
         setTitle("Love PaperPlane");
         setSize(800 , 500);
-        f.setContentPane().setbackground(Color.white);
         setVisible(true);
         addWindowListener(new WindowAdapter(){
             @Override
@@ -55,8 +53,8 @@ public class GameFrame extends JFrame{
     public void paint(Graphics g){
         super.paint(g);
         Graphics2D g2 = (Graphics2D)g;
-//         g.setColor(Color.WHITE);
-//         g.fillRect(0,0,800,500);
+        g.setColor(Color.WHITE);
+        g.fillRect(0,0,800,500);
         obstacle.drawSelf(g2);
         slingShot.drawSelf(g2);
         
