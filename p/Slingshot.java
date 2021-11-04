@@ -8,13 +8,14 @@ public class Slingshot extends GameObject{
     Paperplane plane;
     boolean shoot = false;
     double adjustment = 4.0;
-    double start_x = 0.0,start_y = 0.0,end_x = 0.0,end_y = 0.0;   //滑鼠按住和放開的座標參數
+    double start_x = 0.0, start_y = 0.0; //飛機起飛座標
+    double pressed_x = 0.0, pressed_y = 0.0, released_x = 0.0,released_y = 0.0;   //滑鼠按住和放開的座標參數
 
     public Slingshot(Image img,double x,double y,Paperplane plane){
         this.img = img;
         this.x = x;
         this.y = y;
-        this.plane = plane;
+        setPlane(plane);
     }
 
     //繪製彈弓
@@ -25,7 +26,7 @@ public class Slingshot extends GameObject{
     //藉由三角形斜邊長計算初速度
     public double Force(){
         double v = 0.0;
-        v = (Math.sqrt(Math.pow((start_x - end_x) / adjustment , 2) + Math.pow((start_y - end_y) / adjustment , 2)));
+        v = (Math.sqrt(Math.pow((pressed_x - released_x) / adjustment , 2) + Math.pow((pressed_y - released_y) / adjustment , 2)));
         if(v >= 50.0){
             v = 50.0;
         }
@@ -34,29 +35,55 @@ public class Slingshot extends GameObject{
 
     //藉由反正切值計算仰角
     public double Angle(){
-        return Math.toDegrees(Math.atan((start_y - end_y) / (end_x - start_x)));
+        return Math.toDegrees(Math.atan((pressed_y - released_y) / (released_x - pressed_x))) * plane.getdirection();
     }
     
-    //滑鼠按住事件
+    //滑鼠按下事件
     public void firstpoint(MouseEvent e){
         shoot = true;
-        start_x = e.getX();
-        start_y = e.getY();
+        pressed_x = e.getX();
+        pressed_y = e.getY();
+        start_x = plane.getX();
+        start_y = plane.getY();
     }
 
     //滑鼠拖移事件 useless
-    /*public void middlepoint(MouseEvent e){
-        plane.setX(e.getX());
-        plane.setY(e.getY());
-    }*/
+//     public void middlepoint(MouseEvent e){
+//         int dragged_x = e.getX(), dragged_y = e.getY(); 
+//         int dif_x = start_x - dragged_x, dif_y =  -(start_y-dragged_y)
+//         int plane_x, plane_y;
+//         double m ;
+//         released_x = e.getX();
+//         released_y = e.getY();
+        
+//         if(dif_x = 0){
+//             if()
+//         }else if(dif_y = 0){
+        
+//         }
+            
+//         m = (double)dif_y/(double)dif_x;
+        
+//         plane.setX(plane_x);
+//         plane.setY(plane_y);
+//         plane.setV0(Force());
+//         plane.setAngle(Angle());
+//     }
     
     //滑鼠放開事件
     public void lastpoint(MouseEvent e){
         shoot = false;
-        end_x = e.getX();
-        end_y = e.getY();
+        released_x = e.getX();
+        released_y = e.getY();
+        plane.setX = start_x;
+        plane.setY = start_y;
         plane.setV0(Force());
         plane.setAngle(Angle());
+    }
+    
+    //準備飛機
+    public void setPlane(PaperPlane plane){
+        this.plane = plane;
     }
 }
 
