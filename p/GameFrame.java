@@ -51,11 +51,12 @@ public class GameFrame extends JFrame{
     
     @Override
     public void paint(Graphics g){
+        Graphics2D g2 = (Graphics2D)g;
         g.setColor(Color.WHITE);
         g.fillRect(0,0,800,500);
-        obstacle.drawSelf(g);
-        slingShot.drawSelf(g);
-        Graphics2D g2 = (Graphics2D)g;
+        obstacle.drawSelf(g2);
+        slingShot.drawSelf(g2);
+        
         plane.drawSelf(g2);
         
         //矩形相交判斷是否撞上
