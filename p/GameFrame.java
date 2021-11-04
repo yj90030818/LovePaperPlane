@@ -59,9 +59,7 @@ public class GameFrame extends JFrame{
         obstacle.drawSelf(g2);
         slingShot.drawSelf(g2);
         
-        if(plane.getX()>1000 ||plane.getX()<-200 || plane.getY()>700 ||plane.getY()<1000){
-            plane = new Paperplane(55, 400, 1, "images/pp.png");
-        }
+       
         plane.drawSelf(g2);
         
         //矩形相交判斷是否撞上
