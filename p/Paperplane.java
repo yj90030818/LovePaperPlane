@@ -7,7 +7,7 @@ import java.awt.event.KeyEvent;
 public class Paperplane extends GameObject{
     boolean live = true , go = false;
     int i = 0;
-    double original_x = 0.0,original_y = 0.0,adjustment = 4.0;
+    double original_x = 0.0,original_y = 0.0,adjustment = 4.0, direction = 1.0;
 
     public Paperplane(Image img,double x,double y){
         this.img = img;
@@ -25,7 +25,7 @@ public class Paperplane extends GameObject{
             if(go){
                 if(y <= 550 || x <= 850){
                 //if(i <= removing(getV0(),getAngle())){
-                    x = original_x + i * adjustment;
+                    x = original_x + i * adjustment * direction;
                     y = original_y - locus(i,getV0(),getAngle()) * adjustment;
                     i = i + 2;
                 }else{
@@ -64,12 +64,21 @@ public class Paperplane extends GameObject{
         }
     }
     
-    public double getoriginal_x(){
-        return this.original_x;
+//     public double getoriginal_x(){
+//         return this.original_x;
+//     }
+    
+//     public double getoriginal_y(){
+//         return this.original_x;
+//     }
+   
+    public void setdirection(double d){
+        this.direction = d;
+    }
+
+    public double getdirection(){
+        return direction;
     }
     
-    public double getoriginal_y(){
-        return this.original_x;
-    }
 }
 
