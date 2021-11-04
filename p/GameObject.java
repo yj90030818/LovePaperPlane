@@ -8,7 +8,7 @@ public class GameObject{
     int width, height, type;
     double x, y, v0, angle;
     String ImgResource;
-    Paperplane plane;
+    Paperplane plane = null;
 
 //     public GameObject(){}
 
