@@ -82,7 +82,7 @@ public class Slingshot extends GameObject{
     }
     
     //準備飛機
-    public void setPlane(PaperPlane plane){
+    public void setPlane(Paperplane plane){
         this.plane = plane;
     }
 }
