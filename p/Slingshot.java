@@ -47,6 +47,7 @@ public class Slingshot extends GameObject{
         shoot = true;
         pressed_x = e.getX();
         pressed_y = e.getY();
+        System.out.println("x = "+plane.getoriginal_x()+", y = "+plane.getoriginal_y());
     }
 
     //滑鼠拖移事件 useless
@@ -55,7 +56,7 @@ public class Slingshot extends GameObject{
         released_x = e.getX();
         released_y = e.getY();
         
-        System.out.println("x = "+(released_x - pressed_x)/4+", y = "+(released_y - pressed_y)/4);
+//         System.out.println("x = "+(released_x - pressed_x)/4+", y = "+(released_y - pressed_y)/4);
         
         plane.setX(plane.getoriginal_x() + (released_x - pressed_x)/4);
         plane.setY(plane.getoriginal_y() + (released_y - pressed_y)/4);
