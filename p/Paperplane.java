@@ -93,7 +93,7 @@ public class Paperplane extends GameObject{
     }
     
     public double getoriginal_y(){
-        return this.original_x;
+        return this.original_y;
     }
    
     public void setdirection(double d){
