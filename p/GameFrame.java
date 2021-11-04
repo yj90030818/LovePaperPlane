@@ -35,7 +35,7 @@ public class GameFrame extends JFrame{
     public void launchFrame(){
         setTitle("Love PaperPlane");
         setSize(800 , 500);
-        this.setContentPane().setbackground(Color.white);
+        f.setContentPane().setbackground(Color.white);
         setVisible(true);
         addWindowListener(new WindowAdapter(){
             @Override
