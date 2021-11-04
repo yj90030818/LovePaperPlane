@@ -93,7 +93,7 @@ public class GameFrame extends JFrame{
 
         @Override
         public void mouseDragged(MouseEvent e){
-            //slingShot.middlepoint(e);
+            slingShot.middlepoint(e);
         }
     }
 
