@@ -5,17 +5,21 @@ import java.awt.event.MouseEvent;
 import java.awt.event.KeyEvent;
 
 public class Slingshot extends GameObject{
-    Paperplane plane;
+//     Paperplane plane;
     boolean shoot = false;
     double adjustment = 4.0;
     double start_x = 0.0, start_y = 0.0; //飛機起飛座標
     double pressed_x = 0.0, pressed_y = 0.0, released_x = 0.0,released_y = 0.0;   //滑鼠按住和放開的座標參數
 
-    public Slingshot(Image img,double x,double y,Paperplane plane){
-        this.img = img;
-        this.x = x;
-        this.y = y;
-        setPlane(plane);
+//     public Slingshot(Image img,double x,double y,Paperplane plane){
+//         this.img = img;
+//         this.x = x;
+//         this.y = y;
+//         setPlane(plane);
+//     }
+    
+    public Slingshot(double x, double y, int type, String path, Paperplane plane){
+        super( x, y, type, path, plane);
     }
 
     //繪製彈弓
