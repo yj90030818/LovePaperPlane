@@ -60,7 +60,7 @@ public class GameObject{
         this.x = x;
     }
 
-    public void setY(double plane_y){
+    public void setY(double y){
         this.y = y;
     }
 
