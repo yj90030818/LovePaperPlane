@@ -8,7 +8,7 @@ public class Slingshot extends GameObject{
 //     Paperplane plane;
     boolean shoot = false;
     double adjustment = 4.0;
-    double start_x = 0.0, start_y = 0.0; //飛機起飛座標
+    //double start_x = 0.0, start_y = 0.0; //飛機起飛座標
     double pressed_x = 0.0, pressed_y = 0.0, released_x = 0.0,released_y = 0.0;   //滑鼠按住和放開的座標參數
 
 //     public Slingshot(Image img,double x,double y,Paperplane plane){
@@ -52,27 +52,17 @@ public class Slingshot extends GameObject{
     }
 
     //滑鼠拖移事件 useless
-//     public void middlepoint(MouseEvent e){
-//         int dragged_x = e.getX(), dragged_y = e.getY(); 
-//         int dif_x = start_x - dragged_x, dif_y =  -(start_y-dragged_y)
-//         int plane_x, plane_y;
-//         double m ;
-//         released_x = e.getX();
-//         released_y = e.getY();
+    public void middlepoint(MouseEvent e){
+       
+        released_x = e.getX();
+        released_y = e.getY();
         
-//         if(dif_x = 0){
-//             if()
-//         }else if(dif_y = 0){
         
-//         }
-            
-//         m = (double)dif_y/(double)dif_x;
-        
-//         plane.setX(plane_x);
-//         plane.setY(plane_y);
-//         plane.setV0(Force());
-//         plane.setAngle(Angle());
-//     }
+        plane.setX(plane.getoriginal_x() + (released_x - pressed_x));
+        plane.setY(plane.getoriginal_y() + (released_y - pressed_y));
+        plane.setV0(Force());
+        plane.setAngle(Angle());
+    }
     
     //滑鼠放開事件
     public void lastpoint(MouseEvent e){
