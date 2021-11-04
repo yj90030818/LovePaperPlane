@@ -29,6 +29,7 @@ public class Paperplane extends GameObject{
     //繪製紙飛機
     public void drawSelf(Graphics2D g2){
         if(live){
+            g2.rotate(-direction * -Angle(2,change),x,y);
             if(go){
                 if(y <= 550 || x <= 850){
                 //if(i <= removing(getV0(),getAngle())){
@@ -38,7 +39,7 @@ public class Paperplane extends GameObject{
 
                     //利用飛行角度轉紙飛機
                     change = locus(i,getV0(),getAngle()) - locus(i-2,getV0(),getAngle());
-                    g2.rotate(-direction * -Angle(2,change),x,y);
+//                     g2.rotate(-direction * -Angle(2,change),x,y);
                 }else{
                     go = false;
                 }
