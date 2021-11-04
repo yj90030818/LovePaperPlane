@@ -31,4 +31,8 @@ public class GameUtil{
 
         return image;
     }
+ 
+// 	public Image getMirrorImage(int num, String path){
+// 		return getImage(num, path.insert(6,"mirror_"));
+// 	}
 }
