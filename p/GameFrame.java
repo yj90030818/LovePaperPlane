@@ -13,13 +13,17 @@ import java.awt.event.WindowEvent;
 
 public class GameFrame extends JFrame{
 
-    Image planeImg = GameUtil.getImage(1,"images/pp.png");
-    Image obstacleImg = GameUtil.getImage(2,"images/po.png");
-    Image slingshotImg = GameUtil.getImage(3,"images/ps.png");
+//     Image planeImg = GameUtil.getImage(1,"images/pp.png");
+//     Image obstacleImg = GameUtil.getImage(2,"images/po.png");
+//     Image slingshotImg = GameUtil.getImage(3,"images/ps.png");
     
-    Paperplane plane = new Paperplane(planeImg,55,400);
-    Obstacle obstacle = new Obstacle(obstacleImg,650,300);
-    Slingshot slingShot = new Slingshot(slingshotImg,50,400,plane);
+//     Paperplane plane = new Paperplane(planeImg,55,400,);
+//     Obstacle obstacle = new Obstacle(obstacleImg,650,300);
+//     Slingshot slingShot = new Slingshot(slingshotImg,50,400,plane);
+    
+    Paperplane plane = new Paperplane(55, 400, 1, "images/pp.png");
+    Obstacle obstacle = new Obstacle(650, 300, 2,"images/po.png");
+    Slingshot slingShot = new Slingshot(50, 400 3,"images/ps.png", plane);
 
     public static void main(String[] args){
         GameFrame f = new GameFrame();
