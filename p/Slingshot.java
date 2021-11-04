@@ -51,7 +51,6 @@ public class Slingshot extends GameObject{
 
     //滑鼠拖移事件 useless
     public void middlepoint(MouseEvent e){
-       System.out.println("aaaaaa");
         
         released_x = e.getX();
         released_y = e.getY();
