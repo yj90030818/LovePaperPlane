@@ -3,6 +3,7 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -51,9 +52,10 @@ public class GameFrame extends JFrame{
     public void paint(Graphics g){
         g.setColor(Color.WHITE);
         g.fillRect(0,0,800,500);
-        plane.drawSelf(g);
         obstacle.drawSelf(g);
         slingShot.drawSelf(g);
+        Graphics2D g2 = (Graphics2D)g;
+        plane.drawSelf(g2);
         
         //矩形相交判斷是否撞上
         boolean crash = plane.getRect().intersects(obstacle.getRect());
