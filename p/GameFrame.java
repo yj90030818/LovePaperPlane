@@ -51,6 +51,7 @@ public class GameFrame extends JFrame{
     
     @Override
     public void paint(Graphics g){
+        
         Graphics2D g2 = (Graphics2D)g;
         g.setColor(Color.WHITE);
         g.fillRect(0,0,800,500);
