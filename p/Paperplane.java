@@ -80,13 +80,13 @@ public class Paperplane extends GameObject{
         }
     }
     
-//     public double getoriginal_x(){
-//         return this.original_x;
-//     }
+    public double getoriginal_x(){
+        return this.original_x;
+    }
     
-//     public double getoriginal_y(){
-//         return this.original_x;
-//     }
+    public double getoriginal_y(){
+        return this.original_x;
+    }
    
     public void setdirection(double d){
         this.direction = d;
