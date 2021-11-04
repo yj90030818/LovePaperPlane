@@ -19,13 +19,13 @@ public class GameUtil{
             e.printStackTrace();
         }
 
-        if(num == 1){
+        if(num == 1){ //plane
             image = bi.getScaledInstance(60,40,Image.SCALE_DEFAULT);
         }
-        else if(num == 2){
+        else if(num == 2){ //obstacle
             image = bi.getScaledInstance(60,200,Image.SCALE_DEFAULT);
         }
-        else if(num == 3){
+        else if(num == 3){ //slingshot
             image = bi.getScaledInstance(60,100,Image.SCALE_DEFAULT);
         }
 
