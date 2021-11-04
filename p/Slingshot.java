@@ -47,8 +47,6 @@ public class Slingshot extends GameObject{
         shoot = true;
         pressed_x = e.getX();
         pressed_y = e.getY();
-        start_x = plane.getX();
-        start_y = plane.getY();
     }
 
     //滑鼠拖移事件 useless
