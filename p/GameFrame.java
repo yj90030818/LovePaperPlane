@@ -34,6 +34,7 @@ public class GameFrame extends JFrame{
     public void launchFrame(){
         setTitle("Love PaperPlane");
         setSize(800 , 500);
+        setbackground(Color.white)
         setVisible(true);
         addWindowListener(new WindowAdapter(){
             @Override
@@ -51,9 +52,10 @@ public class GameFrame extends JFrame{
     
     @Override
     public void paint(Graphics g){
+        super.paint(g);
         Graphics2D g2 = (Graphics2D)g;
-        g.setColor(Color.WHITE);
-        g.fillRect(0,0,800,500);
+//         g.setColor(Color.WHITE);
+//         g.fillRect(0,0,800,500);
         obstacle.drawSelf(g2);
         slingShot.drawSelf(g2);
         
