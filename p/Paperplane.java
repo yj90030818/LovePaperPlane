@@ -81,11 +81,11 @@ public class Paperplane extends GameObject{
         if(e.isMetaDown()){
             go = true;
         }
-        drag = false;
+        dragging = false;
     }
     
     public void mouseDrag(MouseEvent e){
-        drag = true;
+        dragging = true;
     }
     
     public double getoriginal_x(){
