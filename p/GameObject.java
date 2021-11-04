@@ -5,33 +5,48 @@ import java.awt.Rectangle;
 //遊戲物件的父類別，讓子類別可以調用父類別的方法
 public class GameObject{
     Image img;
-    int width,height;
-    double x,y,v0,angle;
+    int width, height, type;
+    double x, y, v0, angle;
+    String ImgResource;
     Paperplane plane;
 
-    public GameObject(){}
+//     public GameObject(){}
 
-    public GameObject(Image img, double x, double y, Paperplane plane){
-        super();
-        this.img = img;
-        this.x = x;
-        this.y = y;
+//     public GameObject(Image img, double x, double y, Paperplane plane){
+//         super();
+//         this.img = img;
+//         this.x = x;
+//         this.y = y;
+//         this.plane = plane;
+//     }
+
+//     public GameObject(Image img, double x, double y){
+//         super();
+//         this.img = img;
+//         this.x = x;
+//         this.y = y;
+//     }
+
+    public GameObject(double x, double y, int type, String path, Paperplane plane){
+        GameObject(x, y, type, path);
         this.plane = plane;
     }
-
-    public GameObject(Image img, double x, double y){
-        super();
-        this.img = img;
+    
+    public GameObject(double x, double y, int type, String path){
+//         super();
         this.x = x;
         this.y = y;
+        this.type = type;
+        this.ImgResource = path;
+        this.img = GameUtil.getImage(type, path);
     }
-
+    
     public void drawSelf(Graphics g){
-        g.drawImage(img,(int)x,(int)y, null);
+        g.drawImage(img, (int)x, (int)y, null);
     }
 
     public Rectangle getRect(){
-        return new Rectangle((int)x,(int)y,width,height);
+        return new Rectangle((int)x, (int)y, width, height);
     }
 
     public void setX(double x){
@@ -65,4 +80,16 @@ public class GameObject{
     public double getAngle(){
         return angle;
     }
+    
+    public void setImg(Image img){
+        this.img = img;
+    }
+    
+    public String getImgResource(){
+        return this.ImgResource;
+    }
+    
+    public int getType(){
+        return this.type;
+    } 
 }
