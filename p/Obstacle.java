@@ -8,14 +8,20 @@ public class Obstacle extends GameObject{
     boolean live = true;
     double original_x = 0.0,original_y = 0.0,adjustment = 0.0;
 
-    public Obstacle(Image img,double x,double y){
-        this.img = img;
-        this.x = x;
-        this.y = y;
+//     public Obstacle(Image img,double x,double y){
+//         this.img = img;
+//         this.x = x;
+//         this.y = y;
+//         this.original_x = x;
+//         this.original_y = y;
+//         this.width = img.getWidth(null);
+//         this.height = img.getHeight(null);
+//     }
+    
+    public Obstacle(double x, double y, int type, String path){
+        super(x, y, type, path);
         this.original_x = x;
         this.original_y = y;
-        this.width = img.getWidth(null);
-        this.height = img.getHeight(null);
     }
 
     //繪製紙飛機
