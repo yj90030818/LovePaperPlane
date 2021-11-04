@@ -1,4 +1,5 @@
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
 
@@ -45,6 +46,10 @@ public class GameObject{
     
     public void drawSelf(Graphics g){
         g.drawImage(img, (int)x, (int)y, null);
+    }
+
+    public void drawSelf(Graphics2D g2){
+        g2.drawImage(img,(int)x,(int)y, null);
     }
 
     public Rectangle getRect(){
