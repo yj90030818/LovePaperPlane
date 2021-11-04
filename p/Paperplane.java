@@ -6,7 +6,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.KeyEvent;
 
 public class Paperplane extends GameObject{
-    boolean live = true , go = false;
+    boolean live = true , go = false, dragging = false;
     int i = 0;
     double original_x = 0.0,original_y = 0.0,change = 0.0,adjustment = 4.0, direction = 1.0;
 
@@ -46,8 +46,10 @@ public class Paperplane extends GameObject{
         }else{
             y = y + 5;
         }
+        if(dragging){
         change = locus(i,getV0(),getAngle()) - locus(i-2,getV0(),getAngle());
         g2.rotate(direction * -Angle(2,change),x,y);
+        }
         g2.drawImage(img,(int)x,(int)y,width * (int)direction,height,null);
     }
 
@@ -79,6 +81,11 @@ public class Paperplane extends GameObject{
         if(e.isMetaDown()){
             go = true;
         }
+        drag = false
+    }
+    
+    public void mouseDrag(MouseEvent e){
+        drag = true;
     }
     
     public double getoriginal_x(){
