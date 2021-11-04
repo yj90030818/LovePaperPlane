@@ -27,11 +27,6 @@ public class GameObject{
 //         this.y = y;
 //     }
 
-    public GameObject(double x, double y, int type, String path, Paperplane plane){
-        GameObject(x, y, type, path);
-        this.plane = plane;
-    }
-    
     public GameObject(double x, double y, int type, String path){
 //         super();
         this.x = x;
@@ -39,6 +34,13 @@ public class GameObject{
         this.type = type;
         this.ImgResource = path;
         this.img = GameUtil.getImage(type, path);
+        this.width = img.getWidth(null);
+        this.height = img.getHeight(null);
+    }
+    
+    public GameObject(double x, double y, int type, String path, Paperplane plane){
+        GameObject(x, y, type, path);
+        this.plane = plane;
     }
     
     public void drawSelf(Graphics g){
