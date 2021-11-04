@@ -63,5 +63,13 @@ public class Paperplane extends GameObject{
             go = true;
         }
     }
+    
+    public double getoriginal_x(){
+        return this.original_x;
+    }
+    
+    public double getoriginal_y(){
+        return this.original_x;
+    }
 }
 
