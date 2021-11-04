@@ -44,7 +44,7 @@ public class Paperplane extends GameObject{
                 }
             }
         }else{
-            y = y + 1;
+            y = y + 10;
         }
         
         g2.drawImage(img,(int)x,(int)y, null);
