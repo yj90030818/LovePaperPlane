@@ -46,6 +46,7 @@ public class GameFrame extends JFrame{
         thread.start();
         addKeyListener(new KeyMonitor());
         addMouseListener(new MouseMonitor());
+        addMouseMotionListener(new MouseMonitor());
     }
     
     @Override
