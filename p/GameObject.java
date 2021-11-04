@@ -39,7 +39,7 @@ public class GameObject{
     }
     
     public GameObject(double x, double y, int type, String path, Paperplane plane){
-        GameObject(x, y, type, path);
+        this.GameObject(x, y, type, path);
         this.plane = plane;
     }
     
