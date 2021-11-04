@@ -38,7 +38,7 @@ public class Paperplane extends GameObject{
 
                     //利用飛行角度轉紙飛機
 //                     change = locus(i,getV0(),getAngle()) - locus(i-2,getV0(),getAngle());
-//                     g2.rotate(-direction * -Angle(2,change),x,y);
+//                     g2.rotate(direction * -Angle(2,change),x,y);
                 }else{
                     go = false;
                 }
