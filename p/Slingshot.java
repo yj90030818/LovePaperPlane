@@ -58,7 +58,7 @@ public class Slingshot extends GameObject{
         System.out.println("x = "+(released_x - pressed_x)/4+", y = "+(pressed_y - released_y)/4);
         
         plane.setX(plane.getoriginal_x() + (released_x - pressed_x)/4);
-        plane.setY(plane.getoriginal_y() + (pressed_y - released_y)/4);
+        plane.setY(plane.getoriginal_y() + (released_y - pressed_y)/4);
         plane.setV0(Force());
         plane.setAngle(Angle());
     }
@@ -68,8 +68,6 @@ public class Slingshot extends GameObject{
         shoot = false;
         released_x = e.getX();
         released_y = e.getY();
-//         plane.setX = start_x;
-//         plane.setY = start_y;
         plane.setdirection(pressed_x > released_x ? 1.0 : -1.0);
         plane.setV0(Force());
         plane.setAngle(Angle());
