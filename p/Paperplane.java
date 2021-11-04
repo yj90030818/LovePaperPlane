@@ -23,8 +23,6 @@ public class Paperplane extends GameObject{
         super(x, y, type, path);
         this.original_x = x;
         this.original_y = y;
-        this.width = img.getWidth(null);
-        this.height = img.getHeight(null);
     }
 
     //繪製紙飛機
