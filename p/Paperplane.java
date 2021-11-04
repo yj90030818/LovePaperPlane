@@ -47,7 +47,7 @@ public class Paperplane extends GameObject{
             y = y + 5;
         }
         change = locus(i,getV0(),getAngle()) - locus(i-2,getV0(),getAngle());
-        g2.rotate(-direction * -Angle(2,change),x,y);
+        g2.rotate(direction * -Angle(2,change),x,y);
         g2.drawImage(img,(int)x,(int)y,width * (int)direction,height,null);
     }
 
