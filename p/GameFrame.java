@@ -50,6 +50,10 @@ public class GameFrame extends JFrame{
         addMouseMotionListener(new MouseMonitor());
     }
     
+    public void update(Graphics g){
+        paint(g);
+    }
+    
     @Override
     public void paint(Graphics g){
         super.paint(g);
