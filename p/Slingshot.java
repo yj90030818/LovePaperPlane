@@ -9,7 +9,6 @@ public class Slingshot extends GameObject{
 //     Paperplane plane;
     boolean shoot = false;
     double adjustment = 4.0;
-    //double start_x = 0.0, start_y = 0.0; //飛機起飛座標
     double pressed_x = 0.0, pressed_y = 0.0, released_x = 0.0,released_y = 0.0;   //滑鼠按住和放開的座標參數
 
 //     public Slingshot(Image img,double x,double y,Paperplane plane){
