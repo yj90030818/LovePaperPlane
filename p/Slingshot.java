@@ -58,8 +58,8 @@ public class Slingshot extends GameObject{
         
 //         System.out.println("x = "+(released_x - pressed_x)/4+", y = "+(released_y - pressed_y)/4);
         if(Math.abs(released_x - pressed_x)>100 || Math.abs(released_y - pressed_y)>100){
-            plane.setX(plane.getoriginal_x() + (released_x - pressed_x)/4 + 30);
-            plane.setY(plane.getoriginal_y() + (released_y - pressed_y)/4 + 50);
+            plane.setX(plane.getoriginal_x() + (released_x - pressed_x)/4 + plane.getWidth());
+            plane.setY(plane.getoriginal_y() + (released_y - pressed_y)/4 + plane.getHeight());
             plane.setdirection(pressed_x > released_x ? 1.0 : -1.0);
             plane.setV0(Force());
             plane.setAngle(Angle());
