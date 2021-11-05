@@ -13,15 +13,9 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 public class GameFrame extends JFrame{
-
-//     Image planeImg = GameUtil.getImage(1,"images/pp.png");
-//     Image obstacleImg = GameUtil.getImage(2,"images/po.png");
-//     Image slingshotImg = GameUtil.getImage(3,"images/ps.png");
-    
-//     Paperplane plane = new Paperplane(planeImg,55,400,);
-//     Obstacle obstacle = new Obstacle(obstacleImg,650,300);
-//     Slingshot slingShot = new Slingshot(slingshotImg,50,400,plane);
-    
+     
+    final static int F_WIDTH = 800, F_HEIGHT = 500;
+        
     Paperplane plane = new Paperplane(55, 400, 1, "images/pp.png");
     Obstacle obstacle = new Obstacle(650, 300, 2,"images/po.png");
     Slingshot slingShot = new Slingshot(50, 400, 3,"images/ps.png", plane);
@@ -33,7 +27,7 @@ public class GameFrame extends JFrame{
 
     public void launchFrame(){
         setTitle("Love PaperPlane");
-        setSize(800 , 500);
+        setSize(F_WIDTH , F_HEIGHT);
         this.getContentPane().setBackground(Color.white);
         setVisible(true);
         addWindowListener(new WindowAdapter(){
