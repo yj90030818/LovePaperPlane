@@ -85,6 +85,7 @@ public class Paperplane extends GameObject{
     }
     
     public void nowDragging(){
+        System.out.println("aaaaaa");
         dragging = true;
     }
     
