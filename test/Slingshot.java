@@ -9,7 +9,6 @@ public class Slingshot extends GameObject{
 //     Paperplane plane;
     boolean shoot = false;
     double adjustment = 4.0;
-    //double start_x = 0.0, start_y = 0.0; //飛機起飛座標
     double pressed_x = 0.0, pressed_y = 0.0, released_x = 0.0,released_y = 0.0;   //滑鼠按住和放開的座標參數
 
 //     public Slingshot(Image img,double x,double y,Paperplane plane){
@@ -51,25 +50,28 @@ public class Slingshot extends GameObject{
     
     //滑鼠按下事件
     public void firstpoint(MouseEvent e){
-        shoot = true;
-        pressed_x = e.getX();
-        pressed_y = e.getY();
+        
+        if(e.isMetaDown()){
+            shoot = true;
+            plane.nowDragging();
+            pressed_x = e.getX();
+            pressed_y = e.getY();
+        }
 
     }
 
     //滑鼠拖移事件 useless
     public void middlepoint(MouseEvent e){
-        
+        if(!(plane.isDragging()))
+                return;
         released_x = e.getX();
         released_y = e.getY();
-
+        double limit = 70.0;
+        double drag_x =(released_x - pressed_x)/4, drag_y=(released_y - pressed_y)/4;
         if(Math.abs(released_x - pressed_x) > 100 || Math.abs(released_y - pressed_y) > 100){
-            plane.setX(plane.getoriginal_x() + (released_x - pressed_x)/4);
-            plane.setY(plane.getoriginal_y() + (released_y - pressed_y)/4);
+            plane.setX(plane.getoriginal_x() + (Math.abs(drag_x) > limit ? (drag_x > 0 ? limit : -limit) : drag_x));
+            plane.setY(plane.getoriginal_y() + (Math.abs(drag_y) > limit ? (drag_y > 0 ? limit : -limit) : drag_y));
             plane.setdirection(pressed_x > released_x ? 1.0 : -1.0);
-            plane.setV0(Force());
-            plane.setAngle(Angle());
-            plane.nowDragging();
         }else{
             plane.setX(plane.getoriginal_x());
             plane.setY(plane.getoriginal_y());
@@ -79,12 +81,15 @@ public class Slingshot extends GameObject{
     
     //滑鼠放開事件
     public void lastpoint(MouseEvent e){
-        shoot = false;
-        released_x = e.getX();
-        released_y = e.getY();
-        plane.setdirection(pressed_x > released_x ? 1.0 : -1.0);
-        plane.setV0(Force());
-        plane.setAngle(Angle());
+//         released_x = e.getX();
+//         released_y = e.getY();
+//         plane.setdirection(pressed_x > released_x ? 1.0 : -1.0);
+        if(plane.isDragging()){
+            shoot = false;
+            plane.setV0(Force());
+            plane.setAngle(Angle());
+            plane.mouseRelease(e);
+        }
     }
     
     //準備飛機

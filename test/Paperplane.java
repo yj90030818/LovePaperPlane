@@ -47,8 +47,7 @@ public class Paperplane extends GameObject{
             y = y + 5;
         }
         if(dragFlag){
-            change = locus(i,getV0(),getAngle()) - locus(i-2,getV0(),getAngle());
-            g2.rotate(direction * -Angle(2,change),x,y);
+            g2.rotate(direction * Angle(Math.abs(x - original_x), (original_y - y)), x, y);
         }
         g2.drawImage(img,(int)x,(int)y,width * (int)direction,height,null);
     }
@@ -78,15 +77,20 @@ public class Paperplane extends GameObject{
 
     //滑鼠放開事件
     public void mouseRelease(MouseEvent e){
-        if(e.isMetaDown() && dragFlag){
-            go = true;
+        if(e.isMetaDown()){
+            go = true; 
         }
         dragFlag = false;
+        
     }
     
     public void nowDragging(){
-        if(!(go))
+        if(!(go) && live)
             dragFlag = true;
+    }
+    
+    public boolean isDragging(){
+            return dragFlag;
     }
     
     

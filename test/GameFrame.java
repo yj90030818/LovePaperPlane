@@ -50,6 +50,10 @@ public class GameFrame extends JFrame{
         addMouseMotionListener(new MouseMonitor());
     }
     
+    public void update(Graphics g){
+        paint(g);
+    }
+    
     @Override
     public void paint(Graphics g){
         super.paint(g);
@@ -91,7 +95,7 @@ public class GameFrame extends JFrame{
         @Override
         public void mouseReleased(MouseEvent e){
             slingShot.lastpoint(e);
-            plane.mouseRelease(e);
+//             plane.mouseRelease(e);
         }
 
         @Override
