@@ -47,7 +47,7 @@ public class Paperplane extends GameObject{
             y = y + 5;
         }
         if(dragFlag){
-            g2.rotate(direction * Angle(Math.abs(x - original_x), Math.abs(original_y - y)), x, y);
+            g2.rotate(direction * Angle(Math.abs(x - original_x), (original_y - y)), x, y);
         }
         g2.drawImage(img,(int)x,(int)y,width * (int)direction,height,null);
     }
