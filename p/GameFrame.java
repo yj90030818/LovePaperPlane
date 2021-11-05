@@ -90,6 +90,7 @@ public class GameFrame extends JFrame{
         @Override
         public void mousePressed(MouseEvent e){
             slingShot.firstpoint(e);
+            plane.nowDragging();
         }
         
         @Override
