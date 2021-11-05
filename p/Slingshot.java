@@ -67,7 +67,7 @@ public class Slingshot extends GameObject{
             plane.setX(plane.getoriginal_x() + (released_x - pressed_x)/4);
             plane.setY(plane.getoriginal_y() + (released_y - pressed_y)/4);
             plane.setdirection(pressed_x > released_x ? 1.0 : -1.0);
-            plane.setAngle(plane.Angle((released_x - pressed_x),(released_y - pressed_y)));
+            plane.setAngle(Angle());
             plane.nowDragging();
         }else{
             plane.setX(plane.getoriginal_x());
