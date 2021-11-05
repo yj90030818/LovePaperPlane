@@ -33,11 +33,11 @@ public class GameUtil{
     }
     
     public int GUI_y(double cy){
-        return (int)(GameFram.F_HEIGHT-cy);
+        return (int)(GameFrame.F_HEIGHT-cy);
     }
     
     public double CO_y(int gy){
-        return (double)(GameFram.F_HEIGHT-gy);
+        return (double)(GameFrame.F_HEIGHT-gy);
     }
         
  
