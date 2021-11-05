@@ -85,12 +85,10 @@ public class Paperplane extends GameObject{
     }
     
     public void nowDragging(){
-        dragFlag = true;
+        if(!(go))
+            dragFlag = true;
     }
     
-    public boolean isDragging(){
-        return dragFlag == ture;
-    }
     
     public double getoriginal_x(){
         return this.original_x;
