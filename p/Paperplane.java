@@ -7,7 +7,7 @@ import java.awt.event.KeyEvent;
 
 public class Paperplane extends GameObject{
     boolean live = true , go = false, dragFlag = false;
-    int i = 0;
+    double i = 0.0,j =0.0,k = 0.0;
     double original_x = 0.0,original_y = 0.0,change = 0.0,adjustment = 4.0, direction = 1.0;
 
 //     public Paperplane(Image img,double x,double y){
@@ -30,26 +30,33 @@ public class Paperplane extends GameObject{
     public void drawSelf(Graphics2D g2){
         if(live){
             if(go){
-                if(y <= 550 || x <= 850){
-                //if(i <= removing(getV0(),getAngle())){
-                    x = original_x + i * adjustment * direction;
-                    y = original_y - locus(i,getV0(),getAngle()) * adjustment;
-                    i = i + 2;
-
-                    //利用飛行角度轉紙飛機
-                    change = locus(i,getV0(),getAngle()) - locus(i-2,getV0(),getAngle());
-                    g2.rotate(direction * -Angle(2,change),x,y);
-                }else{
+                if(y >= 550 || x >= 850){
                     go = false;
-                }
+                }else{
+                    j = x_removing(getV0(),getAngle(),i);			
+                    x = original_x + j * adjustment * direction;
+                    y = original_y - locus(j,getV0(),getAngle()) * adjustment;
+                    i = i + 0.1;
+                    k = x_removing(getV0(),getAngle(),i);		
+                    //利用飛行角度轉紙飛機			
+                    change = locus(k,getV0(),getAngle()) - locus(j,getV0(),getAngle());
+                    g2.rotate(direction * -Angle(k-j,change),x,y);
+		}
             }
+            if(dragFlag){
+                g2.rotate(direction * Angle(Math.abs(x - original_x), (original_y - y)), x, y);
+            }
+
         }else{
             y = y + 5;
         }
-        if(dragFlag){
-            g2.rotate(direction * Angle(Math.abs(x - original_x), (original_y - y)), x, y);
-        }
         g2.drawImage(img,(int)x,(int)y,width * (int)direction,height,null);
+    }
+
+    //計算軌跡方程式總距離
+    public double x_removing (double v0,double angle,double t){
+        double radians = Math.toRadians(angle);
+        return v0 * Math.cos(radians) * t;
     }
 
     //計算軌跡方程式總距離
