@@ -62,10 +62,10 @@ public class Slingshot extends GameObject{
         
         released_x = e.getX();
         released_y = e.getY();
-
+        int drag_x =(released_x - pressed_x)/4, drag_y=(released_y - pressed_y)/4;
         if(Math.abs(released_x - pressed_x) > 100 || Math.abs(released_y - pressed_y) > 100){
-            plane.setX(plane.getoriginal_x() + (released_x - pressed_x)/4);
-            plane.setY(plane.getoriginal_y() + (released_y - pressed_y)/4);
+            plane.setX(plane.getoriginal_x() + (drag_x > 0 ? (Math.abs(drag_x) > 80 ? 80 : drag_x) : -(Math.abs(drag_x) > 80 ? 80 : drag_x));
+            plane.setY(plane.getoriginal_y() + (drag_x > 0 ? (Math.abs(drag_x) > 80 ? 80 : drag_x) : -(Math.abs(drag_x) > 80 ? 80 : drag_x));
             plane.setdirection(pressed_x > released_x ? 1.0 : -1.0);
             plane.nowDragging();
         }else{
