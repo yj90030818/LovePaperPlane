@@ -84,7 +84,7 @@ public class Paperplane extends GameObject{
         dragging = false;
     }
     
-    public void mouseDrag(MouseEvent e){
+    public void nowDragging(){
         dragging = true;
     }
     
