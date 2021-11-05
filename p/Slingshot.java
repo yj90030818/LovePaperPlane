@@ -87,7 +87,7 @@ public class Slingshot extends GameObject{
 //         released_y = e.getY();
 //         plane.setdirection(pressed_x > released_x ? 1.0 : -1.0);
         plane.setV0(Force());
-//         plane.setAngle(Angle());
+        plane.setAngle(Angle());
           if(plane.isDragging())
               plane.mouseRelease(e);
     }
