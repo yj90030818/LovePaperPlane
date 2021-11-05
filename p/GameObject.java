@@ -99,4 +99,12 @@ public class GameObject{
     public int getType(){
         return this.type;
     } 
+    
+    public int getWidth(){
+        return this.width;
+    } 
+    
+    public int getHeight(){
+        return this.height;
+    }
 }
