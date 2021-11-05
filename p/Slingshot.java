@@ -1,5 +1,6 @@
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Color;
 import java.lang.Math;
 import java.awt.event.MouseEvent;
 import java.awt.event.KeyEvent;
