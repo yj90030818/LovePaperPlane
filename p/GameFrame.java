@@ -95,7 +95,7 @@ public class GameFrame extends JFrame{
         @Override
         public void mouseReleased(MouseEvent e){
             slingShot.lastpoint(e);
-            plane.mouseRelease(e);
+//             plane.mouseRelease(e);
         }
 
         @Override
