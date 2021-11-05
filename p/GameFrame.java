@@ -97,7 +97,7 @@ public class GameFrame extends JFrame{
         @Override
         public void mouseDragged(MouseEvent e){
             slingShot.middlepoint(e);
-            plane.mouseDrag(e);
+//             plane.mouseDrag(e);
         }
     }
 
