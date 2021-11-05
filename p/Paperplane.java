@@ -85,7 +85,7 @@ public class Paperplane extends GameObject{
     }
     
     public void nowDragging(){
-        if(!(go))
+        if(!(go) || live)
             dragFlag = true;
     }
     
