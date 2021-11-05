@@ -37,7 +37,8 @@ public class Paperplane extends GameObject{
                     x = original_x + j * adjustment * direction;
                     y = original_y - locus(j,getV0(),getAngle()) * adjustment;
                     i = i + 0.1;
-                    k = x_removing(getV0(),getAngle(),i);		
+                    k = x_removing(getV0(),getAngle(),i);
+			
                     //利用飛行角度轉紙飛機			
                     change = locus(k,getV0(),getAngle()) - locus(j,getV0(),getAngle());
                     g2.rotate(direction * -Angle(k-j,change),x,y);
@@ -46,7 +47,6 @@ public class Paperplane extends GameObject{
             if(dragFlag){
                 g2.rotate(direction * Angle(Math.abs(x - original_x), (original_y - y)), x, y);
             }
-
         }else{
             y = y + 5;
         }
