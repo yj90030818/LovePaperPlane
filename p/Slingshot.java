@@ -59,14 +59,14 @@ public class Slingshot extends GameObject{
 
     //滑鼠拖移事件 useless
     public void middlepoint(MouseEvent e){
-        
+        plane.nowDragging();
+        if(!(plane.isDragging()))
+                return;
         released_x = e.getX();
         released_y = e.getY();
         double limit = 70.0;
         double drag_x =(released_x - pressed_x)/4, drag_y=(released_y - pressed_y)/4;
-        plane.nowDragging();
-        if(!(plane.isDragging()))
-                return;
+        
         if(Math.abs(released_x - pressed_x) > 100 || Math.abs(released_y - pressed_y) > 100){
             plane.setX(plane.getoriginal_x() + (Math.abs(drag_x) > limit ? (drag_x > 0 ? limit : -limit) : drag_x));
             plane.setY(plane.getoriginal_y() + (Math.abs(drag_y) > limit ? (drag_y > 0 ? limit : -limit) : drag_y));
