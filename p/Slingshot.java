@@ -25,6 +25,8 @@ public class Slingshot extends GameObject{
     //繪製彈弓
     public void drawSelf(Graphics g){
         g.drawImage(img,(int)x,(int)y, null);
+        if(plane.dragging)
+            g.drawLine(x+30,y+15,plane.getX(),plane.getY());
     }
 
     //藉由三角形斜邊長計算初速度
@@ -47,7 +49,7 @@ public class Slingshot extends GameObject{
         shoot = true;
         pressed_x = e.getX();
         pressed_y = e.getY();
-//         System.out.println("x = "+plane.getoriginal_x()+", y = "+plane.getoriginal_y());
+
     }
 
     //滑鼠拖移事件 useless
@@ -55,9 +57,8 @@ public class Slingshot extends GameObject{
         
         released_x = e.getX();
         released_y = e.getY();
-        
-//         System.out.println("x = "+(released_x - pressed_x)/4+", y = "+(released_y - pressed_y)/4);
-        if(Math.abs(released_x - pressed_x)>100 || Math.abs(released_y - pressed_y)>100){
+
+        if(Math.abs(released_x - pressed_x) > 100 || Math.abs(released_y - pressed_y) > 100){
             plane.setX(plane.getoriginal_x() + (released_x - pressed_x)/4);
             plane.setY(plane.getoriginal_y() + (released_y - pressed_y)/4);
             plane.setdirection(pressed_x > released_x ? 1.0 : -1.0);
