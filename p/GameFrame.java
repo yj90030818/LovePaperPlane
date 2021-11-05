@@ -58,8 +58,6 @@ public class GameFrame extends JFrame{
 //         g.fillRect(0,0,800,500);
         obstacle.drawSelf(g2);
         slingShot.drawSelf(g2);
-        
-       
         plane.drawSelf(g2);
         
         //矩形相交判斷是否撞上
