@@ -26,7 +26,7 @@ public class Slingshot extends GameObject{
     public void drawSelf(Graphics g){
         g.drawImage(img,(int)x,(int)y, null);
         if(plane.dragging)
-            g.drawLine(x+30,y+15,plane.getX(),plane.getY());
+            g.drawLine((int)x+30,(int)y+15,plane.getX(),plane.getY());
     }
 
     //藉由三角形斜邊長計算初速度
