@@ -85,9 +85,9 @@ public class Slingshot extends GameObject{
         shoot = false;
 //         released_x = e.getX();
 //         released_y = e.getY();
-        plane.setdirection(pressed_x > released_x ? 1.0 : -1.0);
+//         plane.setdirection(pressed_x > released_x ? 1.0 : -1.0);
         plane.setV0(Force());
-        plane.setAngle(Angle());
+//         plane.setAngle(Angle());
     }
     
     //準備飛機
