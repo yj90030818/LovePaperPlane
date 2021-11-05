@@ -26,8 +26,8 @@ public class Slingshot extends GameObject{
     //繪製彈弓
     public void drawSelf(Graphics g){
         g.drawImage(img,(int)x,(int)y, null);
-        System.out.println(plane.dragFlag == null ? "NNNNULLL" : "wah");
-        if(plane.dragFlag){
+        
+        if(plane.isDragging()){
             System.out.println("hahaaaa");
             g.setColor(Color.black);
             g.drawLine((int)x+30,(int)y+15,(int)plane.getX(),(int)plane.getY());
