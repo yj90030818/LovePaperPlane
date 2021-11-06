@@ -28,25 +28,11 @@ public class GameUtil{
         else if(num == 3){ //slingshot
             image = bi.getScaledInstance(60,100,Image.SCALE_DEFAULT);
         }
+        else if(num == 4){ //photo
+            image = bi;
+        }
 
         return image;
     }
-
-    public int GUI_x(double cx){
-        return (int)cx;
-    }
-    
-    public int GUI_y(double cy){
-        return (int)(GameFrame.F_HEIGHT-cy);
-    }
-    
-    public double CO_x(int gx){
-        return (double)gx;
-    }
-    
-    public double CO_y(int gy){
-        return (double)(GameFrame.F_HEIGHT-gy);
-    }
-        
  
 }

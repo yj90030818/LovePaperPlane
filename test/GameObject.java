@@ -2,49 +2,67 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
+import java.util.ArrayList;
 
 //遊戲物件的父類別，讓子類別可以調用父類別的方法
 public class GameObject{
     Image img;
-    int width, height, type, x, y;
-    double v0, angle;
+    int width, height, type;
+    double x, y, v0, angle;
     String ImgResource;
-    Paperplane plane = null;
+    ArrayList<Paperplane> planes;
 
+//     public GameObject(){}
 
-    public GameObject(double x, double y, int type, String path){
-        this.x = GameUtil.GUI_x(x);
-        this.y = GameUtil.GUI_y(y);
+//     public GameObject(Image img, double x, double y, Paperplane plane){
+//         super();
+//         this.img = img;
+//         this.x = x;
+//         this.y = y;
+//         this.plane = plane;
+//     }
+
+//     public GameObject(Image img, double x, double y){
+//         super();
+//         this.img = img;
+//         this.x = x;
+//         this.y = y;
+//     }
+
+    public GameObject(double x, double y, int type, String ImgResource){
+//         super();
+        this.x = x;
+        this.y = y;
         this.type = type;
-        this.ImgResource = path;
-        this.img = GameUtil.getImage(type, path);
+        this.ImgResource = ImgResource;
+        this.img = GameUtil.getImage(type, ImgResource);
         this.width = img.getWidth(null);
         this.height = img.getHeight(null);
     }
     
-    public GameObject(double x, double y, int type, String path, Paperplane plane){
-        this(x, y, type, path);
-        this.plane = plane;
+    public GameObject(double x, double y, int type, String ImgResource, ArrayList<Paperplane> planes){
+        this(x, y, type, ImgResource);
+        this.planes = planes;
     }
     
     public void drawSelf(Graphics g){
-        g.drawImage(img, x, y, null);
+        g.drawImage(img, (int)x, (int)y, null);
     }
 
     public void drawSelf(Graphics2D g2){
-        g2.drawImage(img,x,y, null);
+        g2.drawImage(img,(int)x,(int)y, null);
     }
 
     public Rectangle getRect(){
-        return new Rectangle(x, y, width, height);
+        return new Rectangle((int)x, (int)y, width, height);
     }
 
     public void setX(double x){
-        this.x = GameUtil.GUI_x(x);
+        this.x = x;
     }
 
     public void setY(double y){
-        this.y = GameUtil.GUI_y(y);
+        this.y = y;
     }
 
     public void setV0(double v0){
@@ -56,11 +74,11 @@ public class GameObject{
     }
     
     public double getX(){
-        return CO_x(x);
+        return x;
     }
 
     public double getY(){
-        return CO_y(y);
+        return y;
     }
     
     public double getV0(){

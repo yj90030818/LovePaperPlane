@@ -1,10 +1,13 @@
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JButton;
+import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.BorderLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.KeyAdapter;
@@ -13,96 +16,17 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 public class GameFrame extends JFrame{
-     
-    final static int F_WIDTH = 800, F_HEIGHT = 500;
-        
-    Paperplane plane = new Paperplane(55, 400, 1, "images/pp.png");
-    Obstacle obstacle = new Obstacle(650, 300, 2,"images/po.png");
-    Slingshot slingShot = new Slingshot(50, 400, 3,"images/ps.png", plane);
     
     public static void main(String[] args){
         GameFrame f = new GameFrame();
-        f.launchFrame();
+        f.setVisible(true);
     }
 
-    public void launchFrame(){
-        setTitle("Love PaperPlane");
-        setSize(F_WIDTH , F_HEIGHT);
-        this.getContentPane().setBackground(Color.white);
-        setVisible(true);
-        addWindowListener(new WindowAdapter(){
-            @Override
-            public void windowClosing(WindowEvent e){
-                System.exit(0);
-            }
-        });
-
-        PaintThread thread = new PaintThread();
-        thread.start();
-        addKeyListener(new KeyMonitor());
-        addMouseListener(new MouseMonitor());
-        addMouseMotionListener(new MouseMonitor());
-    }
-    
-    public void update(Graphics g){
-        paint(g);
-    }
-    
-    @Override
-    public void paint(Graphics g){
-        super.paint(g);
-        Graphics2D g2 = (Graphics2D)g;
-        g.setColor(Color.WHITE);
-        g.fillRect(0,0,800,500);
-        obstacle.drawSelf(g2);
-        slingShot.drawSelf(g2);
-        plane.drawSelf(g2);
-        
-        //矩形相交判斷是否撞上
-        boolean crash = plane.getRect().intersects(obstacle.getRect());
-        if(crash){
-            plane.live = false;
-            obstacle.live = false;
-        }
-    }
-
-    class PaintThread extends Thread{
-        @Override
-        public void run(){
-            while(true){
-                repaint();
-                try{
-                    Thread.sleep(40);
-                }catch(InterruptedException e){
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
-
-    class MouseMonitor extends MouseAdapter{
-        @Override
-        public void mousePressed(MouseEvent e){
-            slingShot.firstpoint(e);
-        }
-        
-        @Override
-        public void mouseReleased(MouseEvent e){
-            slingShot.lastpoint(e);
-//             plane.mouseRelease(e);
-        }
-
-        @Override
-        public void mouseDragged(MouseEvent e){
-            slingShot.middlepoint(e);
-//             plane.mouseDrag(e);
-        }
-    }
-
-    class KeyMonitor extends KeyAdapter{
-        @Override
-        public void keyReleased(KeyEvent e){
-            //plane.keyRelease(e);
-        }
+    public GameFrame(){
+        this.setTitle("Love PaperPlane");
+        this.setSize(800 , 540);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        GamePanel panel = new GamePanel();        
+        this.add(panel, BorderLayout.CENTER);
     }
 }
