@@ -9,16 +9,6 @@ public class Paperplane extends GameObject{
     boolean live = true , go = false, shoot  =  false , dragFlag = false;
     double i = 0.0,j =0.0,k = 0.0;
     double original_x = 0.0,original_y = 0.0,change = 0.0,adjustment = 4.0, direction = 1.0;
-
-//     public Paperplane(Image img,double x,double y){
-//         this.img = img;
-//         this.x = x;
-//         this.y = y;
-//         this.original_x = x;
-//         this.original_y = y;
-//         this.width = img.getWidth(null);
-//         this.height = img.getHeight(null);
-//     }
     
     public Paperplane(double x, double y, int type, String ImgResource){
         super(x, y, type, ImgResource);
