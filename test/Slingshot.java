@@ -7,7 +7,7 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 public class Slingshot extends GameObject{
-    Paperplane plane;
+    Paperplane plane = new Paperplane();
     boolean shoot = false;
     int i = 0;
     double adjustment = 4.0;
@@ -16,6 +16,7 @@ public class Slingshot extends GameObject{
     
     public Slingshot(double x, double y, int type, String ImgResource, ArrayList<Paperplane> planes){
         super( x, y, type, ImgResource, planes);
+	//planes.get(i).shoot = true;
 	setPlane(planes);
     }
 
@@ -41,7 +42,7 @@ public class Slingshot extends GameObject{
     
     //滑鼠按下事件
     public void firstpoint(MouseEvent e){
-
+            //plane.shoot = true;
             shoot = true;
             pressed_x = e.getX();
             pressed_y = e.getY();
@@ -80,16 +81,18 @@ public class Slingshot extends GameObject{
             plane.setAngle(Angle());
             plane.mouseRelease(e);	
         }
+	if(!plane.live){
         if(i < planes.size()-1){
             i = i + 1;
             setPlane(planes);
+        }
         }
     }
     
     //準備飛機
     public void setPlane(ArrayList<Paperplane> planes){
 	this.plane = planes.get(i);
-	plane.shoot = true;
+	plane.show = true;
     }
 }
 

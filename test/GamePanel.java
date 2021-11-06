@@ -39,7 +39,7 @@ public class GamePanel extends JPanel{
         obstacle.drawSelf(g2);
         slingShot.drawSelf(g2);
         for(int i = 0;i < planes.size();i++){
-        if(planes.get(i).shoot){	
+        //if(planes.get(i).show){	
         planes.get(i).drawSelf(g2);
         
         boolean crash = planes.get(i).getRect().intersects(obstacle.getRect());
@@ -47,7 +47,7 @@ public class GamePanel extends JPanel{
             planes.get(i).live = false;
             obstacle.live = false;
         }
-        }
+        //}
         }
     }
 
