@@ -51,7 +51,7 @@ public class Slingshot extends GameObject{
         plane.setDragging(true);
         if(!(plane.isDragging()))
                     return;
-        if(Math.abs(e.getX() - pressed_x) > 200 || Math.abs(e.getY() - pressed_y) > 200){
+        if(Math.abs(e.getX() - pressed_x) > 300 || Math.abs(e.getY() - pressed_y) > 300){
             
             released_x = e.getX();
             released_y = e.getY();
