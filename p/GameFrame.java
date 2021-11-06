@@ -22,69 +22,74 @@ public class GameFrame extends JFrame{
 //     Obstacle obstacle = new Obstacle(obstacleImg,650,300);
 //     Slingshot slingShot = new Slingshot(slingshotImg,50,400,plane);
     
-    Paperplane plane = new Paperplane(55, 400, 1, "images/pp.png");
-    Obstacle obstacle = new Obstacle(650, 300, 2,"images/po.png");
-    Slingshot slingShot = new Slingshot(50, 400, 3,"images/ps.png", plane);
+//     Paperplane plane = new Paperplane(55, 400, 1, "images/pp.png");
+//     Obstacle obstacle = new Obstacle(650, 300, 2,"images/po.png");
+//     Slingshot slingShot = new Slingshot(50, 400, 3,"images/ps.png", plane);
     
     public static void main(String[] args){
         GameFrame f = new GameFrame();
-        f.launchFrame();
+        f.setVisible(true);
+        
+//         f.launchFrame();
     }
 
-    public void launchFrame(){
+//     public void launchFrame(){
+    public GameFrame(){
         setTitle("Love PaperPlane");
         setSize(800 , 500);
-        this.getContentPane().setBackground(Color.white);
-        setVisible(true);
-        addWindowListener(new WindowAdapter(){
-            @Override
-            public void windowClosing(WindowEvent e){
-                System.exit(0);
-            }
-        });
-
-        PaintThread thread = new PaintThread();
-        thread.start();
-        addKeyListener(new KeyMonitor());
-        addMouseListener(new MouseMonitor());
-        addMouseMotionListener(new MouseMonitor());
-    }
-    
-    public void update(Graphics g){
-        paint(g);
-    }
-    
-    @Override
-    public void paint(Graphics g){
-        super.paint(g);
-        Graphics2D g2 = (Graphics2D)g;
-        g.setColor(Color.WHITE);
-        g.fillRect(0,0,800,500);
-        obstacle.drawSelf(g2);
-        slingShot.drawSelf(g2);
-        plane.drawSelf(g2);
         
-        //矩形相交判斷是否撞上
-        boolean crash = plane.getRect().intersects(obstacle.getRect());
-        if(crash){
-            plane.live = false;
-            obstacle.live = false;
-        }
-    }
+        GamePanel panel = new GamePanel();        
+//         setVisible(true);
+//         addWindowListener(new WindowAdapter(){
+//             @Override
+//             public void windowClosing(WindowEvent e){
+//                 System.exit(0);
+//             }
+//         });
 
-    class PaintThread extends Thread{
-        @Override
-        public void run(){
-            while(true){
-                repaint();
-                try{
-                    Thread.sleep(40);
-                }catch(InterruptedException e){
-                    e.printStackTrace();
-                }
-            }
-        }
+//         PaintThread thread = new PaintThread();
+//         thread.start();
+        panel.addKeyListener(new KeyMonitor());
+        panel.addMouseListener(new MouseMonitor());
+        panel.addMouseMotionListener(new MouseMonitor());
+        add(panel, BorderLayout.CENTER);
     }
+    
+//     public void update(Graphics g){
+//         paint(g);
+//     }
+    
+//     @Override
+//     public void paint(Graphics g){
+//         super.paint(g);
+//         Graphics2D g2 = (Graphics2D)g;
+//         g.setColor(Color.WHITE);
+//         g.fillRect(0,0,800,500);
+//         obstacle.drawSelf(g2);
+//         slingShot.drawSelf(g2);
+//         plane.drawSelf(g2);
+        
+//         //矩形相交判斷是否撞上
+//         boolean crash = plane.getRect().intersects(obstacle.getRect());
+//         if(crash){
+//             plane.live = false;
+//             obstacle.live = false;
+//         }
+//     }
+
+//     class PaintThread extends Thread{
+//         @Override
+//         public void run(){
+//             while(true){
+//                 repaint();
+//                 try{
+//                     Thread.sleep(40);
+//                 }catch(InterruptedException e){
+//                     e.printStackTrace();
+//                 }
+//             }
+//         }
+//     }
 
     class MouseMonitor extends MouseAdapter{
         @Override
