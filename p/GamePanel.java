@@ -8,12 +8,14 @@ public class GamePanel extends JPanel{
     private Obstacle obstacle = new Obstacle(650, 300, 2,"images/po.png"); //ArrayList<Obstacle> obstacles;
 //     private ArrayList<Target> targets;
     private Slingshot slingShot = new Slingshot(50, 400, 3,"images/ps.png", plane);
+    private PaintThread thread = new PaintThread();
     
     
     
 //     public GamePanel(ArrayList<Paperplane> planes, ArrayList<Obstacle> obstacles, Slingshot slingShot){}
     public GamePanel(){
         setBackground(Color.white);
+        thread.start();
     }
     
     @Override
@@ -33,5 +35,17 @@ public class GamePanel extends JPanel{
         }
     }
     
-    
+    class PaintThread extends Thread{
+        @Override
+        public void run(){
+            while(true){
+                repaint();
+                try{
+                    Thread.sleep(40);
+                }catch(InterruptedException e){
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 }
