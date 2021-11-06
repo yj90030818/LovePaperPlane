@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.BorderLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.KeyAdapter;
@@ -49,9 +50,9 @@ public class GameFrame extends JFrame{
 
 //         PaintThread thread = new PaintThread();
 //         thread.start();
-        panel.addKeyListener(new KeyMonitor());
-        panel.addMouseListener(new MouseMonitor());
-        panel.addMouseMotionListener(new MouseMonitor());
+//         addKeyListener(new KeyMonitor());
+//         addMouseListener(new MouseMonitor());
+//         addMouseMotionListener(new MouseMonitor());
         add(panel, BorderLayout.CENTER);
     }
     
@@ -91,29 +92,29 @@ public class GameFrame extends JFrame{
 //         }
 //     }
 
-    class MouseMonitor extends MouseAdapter{
-        @Override
-        public void mousePressed(MouseEvent e){
-            slingShot.firstpoint(e);
-        }
+//     class MouseMonitor extends MouseAdapter{
+//         @Override
+//         public void mousePressed(MouseEvent e){
+//             slingShot.firstpoint(e);
+//         }
         
-        @Override
-        public void mouseReleased(MouseEvent e){
-            slingShot.lastpoint(e);
-//             plane.mouseRelease(e);
-        }
+//         @Override
+//         public void mouseReleased(MouseEvent e){
+//             slingShot.lastpoint(e);
+// //             plane.mouseRelease(e);
+//         }
 
-        @Override
-        public void mouseDragged(MouseEvent e){
-            slingShot.middlepoint(e);
-//             plane.mouseDrag(e);
-        }
-    }
+//         @Override
+//         public void mouseDragged(MouseEvent e){
+//             slingShot.middlepoint(e);
+// //             plane.mouseDrag(e);
+//         }
+//     }
 
-    class KeyMonitor extends KeyAdapter{
-        @Override
-        public void keyReleased(KeyEvent e){
-            //plane.keyRelease(e);
-        }
-    }
+//     class KeyMonitor extends KeyAdapter{
+//         @Override
+//         public void keyReleased(KeyEvent e){
+//             //plane.keyRelease(e);
+//         }
+//     }
 }
