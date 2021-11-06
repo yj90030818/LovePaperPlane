@@ -36,9 +36,9 @@ public class GameFrame extends JFrame{
 
 //     public void launchFrame(){
     public GameFrame(){
-        setTitle("Love PaperPlane");
-        setSize(800 , 500);
-        
+        this.setTitle("Love PaperPlane");
+        this.setSize(800 , 500);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         GamePanel panel = new GamePanel();        
 //         setVisible(true);
 //         addWindowListener(new WindowAdapter(){
@@ -53,7 +53,7 @@ public class GameFrame extends JFrame{
 //         addKeyListener(new KeyMonitor());
 //         addMouseListener(new MouseMonitor());
 //         addMouseMotionListener(new MouseMonitor());
-        add(panel, BorderLayout.CENTER);
+        this.add(panel, BorderLayout.CENTER);
     }
     
 //     public void update(Graphics g){
