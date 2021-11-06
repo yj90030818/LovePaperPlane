@@ -16,6 +16,7 @@ public class Paperplane extends GameObject{
         this.original_y = y;
     }
 
+	
     //繪製紙飛機
     public void drawSelf(Graphics2D g2){
         if(shoot){	
