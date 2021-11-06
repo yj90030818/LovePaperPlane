@@ -11,12 +11,6 @@ public class Slingshot extends GameObject{
     double adjustment = 4.0;
     double pressed_x = 0.0, pressed_y = 0.0, released_x = 0.0,released_y = 0.0;   //滑鼠按住和放開的座標參數
 
-//     public Slingshot(Image img,double x,double y,Paperplane plane){
-//         this.img = img;
-//         this.x = x;
-//         this.y = y;
-//         setPlane(plane);
-//     }
     
     public Slingshot(double x, double y, int type, String path, Paperplane plane){
         super( x, y, type, path, plane);
@@ -26,11 +20,6 @@ public class Slingshot extends GameObject{
     public void drawSelf(Graphics g){
         g.drawImage(img,(int)x,(int)y, null);
         
-//         if(plane.isDragging()){
-//             System.out.println("hahaaaa");
-//             g.setColor(Color.black);
-//             g.drawLine((int)x+30,(int)y+15,(int)plane.getX(),(int)plane.getY());
-//         }
     }
 
     //藉由三角形斜邊長計算初速度
@@ -62,7 +51,7 @@ public class Slingshot extends GameObject{
         plane.setDragging(true);
         if(!(plane.isDragging()))
                     return;
-        if(Math.abs(e.getX() - pressed_x) > 100 || Math.abs(e.getY() - pressed_y) > 100){
+        if(Math.abs(e.getX() - pressed_x) > 200 || Math.abs(e.getY() - pressed_y) > 200){
             
             released_x = e.getX();
             released_y = e.getY();
