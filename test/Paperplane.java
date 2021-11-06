@@ -19,11 +19,11 @@ public class Paperplane extends GameObject{
 	
     //繪製紙飛機
     public void drawSelf(Graphics2D g2){
-        if(shoot){	
-        	if(live){
-            	if(go){
-               		if(y >= 550 || x >= 850){
-                    	live = false;
+		if(shoot){	
+  			if(live){
+        		if(go){
+            		if(y >= 550 || x >= 850){
+                		live = false;
                 	}else{
 						j = x_removing(getV0(),getAngle(),i);			
 						x = original_x + j * adjustment * direction;
@@ -32,19 +32,19 @@ public class Paperplane extends GameObject{
 						k = x_removing(getV0(),getAngle(),i);
 
 						//利用飛行角度轉紙飛機			
-						change = locus(k,getV0(),getAngle()) - locus(j,getV0(),getAngle());
+						change = locus(k,getV0(),getAngle()) - locus(j,getV0(),getAngle());	
 						g2.rotate(direction * -Angle(k-j,change),x,y);
 					}
-            	}
+      			}
             	if(dragFlag){
-                	g2.rotate(direction * Angle(Math.abs(x - original_x), (original_y - y)), x, y);
+            		g2.rotate(direction * Angle(Math.abs(x - original_x), (original_y - y)), x, y);
             	}
         	}else{
-            	y = y + 5;
+        		y = y + 5;
         	}
         	g2.drawImage(img,(int)x,(int)y,width * (int)direction,height,null);
     	}
-    }
+	}
 
     //計算軌跡方程式總距離
     public double x_removing (double v0,double angle,double t){
