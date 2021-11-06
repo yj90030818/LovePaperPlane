@@ -28,6 +28,9 @@ public class GameUtil{
         else if(num == 3){ //slingshot
             image = bi.getScaledInstance(60,100,Image.SCALE_DEFAULT);
         }
+        else if(num == 4){ //photo
+            image = bi;
+        }
 
         return image;
     }
