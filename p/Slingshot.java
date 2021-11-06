@@ -47,6 +47,8 @@ public class Slingshot extends GameObject{
 
     //滑鼠拖移事件 useless
     public void middlepoint(MouseEvent e){
+        if(!(e.isMetaDown()))
+           return; 
         plane.setDragging(true);
         if(!(plane.isDragging()))
                     return;
