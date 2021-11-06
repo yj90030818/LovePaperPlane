@@ -81,9 +81,6 @@ public class Slingshot extends GameObject{
     
     //滑鼠放開事件
     public void lastpoint(MouseEvent e){
-//         released_x = e.getX();
-//         released_y = e.getY();
-//         plane.setdirection(pressed_x > released_x ? 1.0 : -1.0);
         if(plane.isDragging()){
             shoot = false;
             plane.setV0(Force());
