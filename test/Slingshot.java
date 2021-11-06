@@ -80,7 +80,7 @@ public class Slingshot extends GameObject{
             plane.setAngle(Angle());
             plane.mouseRelease(e);	
         }
-        if(i < planes.size()){
+        if(i < planes.size()-1){
             i = i + 1;
             setPlane(planes);
         }
