@@ -15,6 +15,9 @@ public class GamePanel extends JPanel{
 //     public GamePanel(ArrayList<Paperplane> planes, ArrayList<Obstacle> obstacles, Slingshot slingShot){}
     public GamePanel(){
         setBackground(Color.white);
+        addKeyListener(new KeyMonitor());
+        addMouseListener(new MouseMonitor());
+        addMouseMotionListener(new MouseMonitor());
         thread.start();
     }
     
@@ -46,6 +49,31 @@ public class GamePanel extends JPanel{
                     e.printStackTrace();
                 }
             }
+        }
+    }
+    class MouseMonitor extends MouseAdapter{
+        @Override
+        public void mousePressed(MouseEvent e){
+            slingShot.firstpoint(e);
+        }
+        
+        @Override
+        public void mouseReleased(MouseEvent e){
+            slingShot.lastpoint(e);
+//             plane.mouseRelease(e);
+        }
+
+        @Override
+        public void mouseDragged(MouseEvent e){
+            slingShot.middlepoint(e);
+//             plane.mouseDrag(e);
+        }
+    }
+
+    class KeyMonitor extends KeyAdapter{
+        @Override
+        public void keyReleased(KeyEvent e){
+            //plane.keyRelease(e);
         }
     }
 }
