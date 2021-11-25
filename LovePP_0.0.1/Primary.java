@@ -24,7 +24,7 @@ public class Primary extends Thread{
             
             
             if(nowPlane.getState()==0)
-                Slingshot.setPlane1(nowPlane);
+                Slingshot.setPlane(nowPlane);
             // for(int index = 0; index <= Planes.size(); index++){
             //     if(Planes.get(index).getState() == 0){
             //         nowPlane = Planes.get(index);
