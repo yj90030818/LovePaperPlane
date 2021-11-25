@@ -36,7 +36,7 @@ public class Primary extends Thread{
             //         break;
             //     }
             // }
-            currentTime=System.currentTimeMillis();
+            long currentTime=System.currentTimeMillis();
             System.out.println("AAAAAAAAAAAAAAAAAAAAAA time = "+(currentTime - time));
             time = System.currentTimeMillis();
             System.out.println("(X,Y)="+nowPlane.getX()+","+nowPlane.getY()+"|(V_x,V_y)="+nowPlane.getV_x()+","+nowPlane.getV_y());
