@@ -13,8 +13,8 @@ public class Primary extends Thread{
         Obstacles = prepare.getObstacles();
         Slingshot = prepare.getSlingshot(); 
         nowPlane = Planes.get(0);
-//         Planes.get(0).setV_x(5);
-//         Planes.get(0).setV_y(5);
+        Planes.get(0).setV_x(5);
+        Planes.get(0).setV_y(5);
     }
 
     @Override
