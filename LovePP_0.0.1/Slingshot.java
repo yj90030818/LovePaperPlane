@@ -9,7 +9,7 @@ public class Slingshot extends GameObject{
         this.setX(x);
         this.setY(y);   
         this.P1_x = x;
-        this.P1_y = 100;//y - this.Height/4;
+        this.P1_y = y;//y - this.Height/4;
         this.P2_x = 0;
         this.P2_y = 0;
     }
