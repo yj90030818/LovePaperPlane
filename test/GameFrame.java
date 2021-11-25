@@ -16,6 +16,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 public class GameFrame extends JFrame{
+GamePanel panel;
     
     public static void main(String[] args){
         GameFrame f = new GameFrame();
@@ -26,7 +27,9 @@ public class GameFrame extends JFrame{
         this.setTitle("Love PaperPlane");
         this.setSize(800 , 540);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        GamePanel panel = new GamePanel();        
+        panel = new GamePanel();        
         this.add(panel, BorderLayout.CENTER);
+        //GameThread t = new GameThread(panel);
+        //t.start();
     }
 }

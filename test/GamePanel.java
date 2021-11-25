@@ -4,17 +4,19 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 public class GamePanel extends JPanel{
+    private GameThread t;
     private ArrayList<Paperplane> planes = setPlanes();
 //    private ArrayList<Obstacle> obstacles = new ArrayList<>();
 
 //    private Paperplane plane = new Paperplane(55, 400, 1, "images/pp.png");//ArrayList<Paperplane> planes;
     private Obstacle obstacle = new Obstacle(650, 300, 2,"images/po.png"); //ArrayList<Obstacle> obstacles;
 //     private ArrayList<Target> targets;
-    private Slingshot slingShot = new Slingshot(50, 400, 3,"images/ps.png",planes);
+    public Slingshot slingShot = new Slingshot(50, 400, 3,"images/ps.png",planes);
     private PaintThread thread = new PaintThread();
     
     
@@ -26,7 +28,11 @@ public class GamePanel extends JPanel{
         //addKeyListener(new KeyMonitor());
         addMouseListener(new MouseMonitor());
         addMouseMotionListener(new MouseMonitor());
+        addMouseWheelListener(new MouseMonitor());
         thread.start();
+	t = new GameThread(this);
+	t.start();
+
     }
     
     @Override
@@ -36,18 +42,21 @@ public class GamePanel extends JPanel{
         g.setColor(Color.BLACK);
         g.drawRect(0,0,800,500);
         g.drawString(String.valueOf(planes.size()),100,100);
-        obstacle.drawSelf(g2);
         slingShot.drawSelf(g2);
+   	obstacle.drawSelf(g2);
         for(int i = 0;i < planes.size();i++){
-        //if(planes.get(i).show){	
+        if(planes.get(i).show){	
+	//g2.translate(30,20);
+	//g2.rotate(planes.get(i).angle,planes.get(i).x,planes.get(i).y);
+
         planes.get(i).drawSelf(g2);
-        
+        //g2.rotate(-planes.get(i).angle,planes.get(i).x,planes.get(i).y);
         boolean crash = planes.get(i).getRect().intersects(obstacle.getRect());
         if(crash){
             planes.get(i).live = false;
             obstacle.live = false;
         }
-        //}
+        }
         }
     }
 
@@ -74,6 +83,12 @@ public class GamePanel extends JPanel{
     }
     class MouseMonitor extends MouseAdapter{
         @Override
+        public void mouseClicked(MouseEvent e){
+            slingShot.setPlane(e);
+            t.Clicked(e);
+        }
+
+        @Override
         public void mousePressed(MouseEvent e){
             slingShot.firstpoint(e);
         }
@@ -87,6 +102,13 @@ public class GamePanel extends JPanel{
         public void mouseDragged(MouseEvent e){
             slingShot.middlepoint(e);
         }
+
+        @Override
+        public void mouseWheelMoved(MouseWheelEvent e){
+            slingShot.changePlane(e);
+	        t.WheelMoved(e);
+        }
+
     }
 
     /*class KeyMonitor extends KeyAdapter{

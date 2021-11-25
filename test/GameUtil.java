@@ -20,7 +20,8 @@ public class GameUtil{
         }
 
         if(num == 1){ //plane
-            image = bi.getScaledInstance(60,40,Image.SCALE_DEFAULT);
+            //image = bi.getScaledInstance(60,40,Image.SCALE_DEFAULT);
+            image = bi;
         }
         else if(num == 2){ //obstacle
             image = bi.getScaledInstance(60,200,Image.SCALE_DEFAULT);

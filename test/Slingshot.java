@@ -3,12 +3,13 @@ import java.awt.Image;
 import java.awt.Color;
 import java.lang.Math;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 public class Slingshot extends GameObject{
     Paperplane plane = new Paperplane();
-    boolean shoot = false;
+    boolean shoot = false,collison = false;
     int i = 0;
     double adjustment = 4.0;
     double pressed_x = 0.0, pressed_y = 0.0, released_x = 0.0,released_y = 0.0;   //滑鼠按住和放開的座標參數
@@ -17,7 +18,9 @@ public class Slingshot extends GameObject{
     public Slingshot(double x, double y, int type, String ImgResource, ArrayList<Paperplane> planes){
         super( x, y, type, ImgResource, planes);
 	//planes.get(i).shoot = true;
-	setPlane(planes);
+	//setPlane(planes);
+        this.plane = planes.get(i);
+        plane.show = true;
     }
 
     //繪製彈弓
@@ -81,18 +84,53 @@ public class Slingshot extends GameObject{
             plane.setAngle(Angle());
             plane.mouseRelease(e);	
         }
+    }
+
+    //準備飛機
+    public void setPlane(MouseEvent e){
 	if(!plane.live){
-        if(i < planes.size()-1){
-            i = i + 1;
-            setPlane(planes);
+            //if(planes.size()-1 > 0){
+            if(i < planes.size()-1){
+            	i = i + 1;
+            //planes.remove(0);            	
+            	this.plane = planes.get(i);
+            	plane.show = true;
+            }
         }
+    }
+
+    //替換飛機
+    public void changePlane(MouseWheelEvent e){
+	//滑鼠滾輪向下 123 -> 231
+	if(e.getWheelRotation() == 1){
+            if(!plane.isDragging() && !plane.go){
+            plane.show = false;
+            planes.add(plane);
+            planes.remove(i);
+	            	
+            Paperplane nextPlane = planes.get(i);
+            this.plane = nextPlane;
+            nextPlane.show = true;
+            }
+        }
+	//滑鼠滾輪向上 123 -> 312
+	if(e.getWheelRotation() == -1){
+            if(!plane.isDragging() && !plane.go){
+            plane.show = false;
+            planes.add(i,planes.get(planes.size() - 1));
+            planes.remove(planes.size() - 1);
+	            	
+            Paperplane nextPlane = planes.get(i);
+            this.plane = nextPlane;
+            nextPlane.show = true;
+            }
         }
     }
     
     //準備飛機
-    public void setPlane(ArrayList<Paperplane> planes){
+    /*public void setPlane(ArrayList<Paperplane> planes){
 	this.plane = planes.get(i);
 	plane.show = true;
-    }
+    }*/
 }
 
