@@ -21,7 +21,7 @@ public class Prepare {
     public void Load_Object(int Stage_ID){
         PaperPlane plane = new PaperPlane(0, "pp01.png");
         Planes.add(plane);
-        Obstacle obstacle = new Obstacle(650, 150, 0, "po.png");
+        Obstacle obstacle = new Obstacle(650, 145, 0, "po.png");
         Obstacles.add(obstacle);
         Slingshot = new Slingshot(75, 90, 0, "ps.png");    
     }
