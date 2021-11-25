@@ -22,7 +22,7 @@ public class GameObject{
     //X mutator and accessor--
     public void setX(double x){
         System.out.println("now"+this.getClass().toString().substring(5)+".x="+x);
-        this.X = GameUtil.Gui_X(x - this.Width/2);
+        this.X = GameUtil.Gui_X(x);
     }
     
     public int get_Gui_X(){
@@ -30,7 +30,7 @@ public class GameObject{
     }
 
     public double getX(){
-        return GameUtil.Coordinary_X(this.X + this.Width/2);
+        return GameUtil.Coordinary_X(this.X);
     }
     //--
 
@@ -38,7 +38,7 @@ public class GameObject{
     //Y mutator and accessor--
     public void setY(double y){
         System.out.println("new"+this.getClass().toString().substring(5)+".y="+y);
-        this.Y = GameUtil.Gui_Y(y + this.Height/2);
+        this.Y = GameUtil.Gui_Y(y);
     }
 
     public int get_Gui_Y(){
@@ -46,7 +46,7 @@ public class GameObject{
     }
 
     public double getY(){
-        return GameUtil.Coordinary_Y(this.Y - this.Height/2);
+        return GameUtil.Coordinary_Y(this.Y);
     }
     //--
 
