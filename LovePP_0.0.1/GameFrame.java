@@ -8,7 +8,7 @@ public class GameFrame extends JFrame{
     public GameFrame(String title, GamePanel panel){
         this.setTitle(title);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(WIDTH, HEIGHT);
+        this.setSize(WIDTH, HEIGHT + 30);
         this.add(panel, BorderLayout.CENTER);
     }
 }
