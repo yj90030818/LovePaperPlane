@@ -38,7 +38,7 @@ public class GameObject{
     //Y mutator and accessor--
     public void setY(double y){
         System.out.println("new"+this.getClass().toString().substring(5)+".y="+y);
-        this.Y = GameUtil.Gui_Y(y - this.Height/2);
+        this.Y = GameUtil.Gui_Y(y + this.Height/2);
     }
 
     public int get_Gui_Y(){
