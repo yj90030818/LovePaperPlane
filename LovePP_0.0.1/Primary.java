@@ -18,7 +18,7 @@ public class Primary extends Thread{
 
     @Override
     public void run() {
-        long time = System.currentTimeMillis();
+        
         while(game){
             
             nowPlane = Planes.get(0);
@@ -36,9 +36,6 @@ public class Primary extends Thread{
             //         break;
             //     }
             // }
-            long currentTime=System.currentTimeMillis();
-            System.out.println("AAAAAAAAAAAAAAAAAAAAAA time = "+(currentTime - time));
-            time = System.currentTimeMillis();
             System.out.println("(X,Y)="+nowPlane.getX()+","+nowPlane.getY()+"|(V_x,V_y)="+nowPlane.getV_x()+","+nowPlane.getV_y());
             if(nowPlane == null)
                 game = false;
