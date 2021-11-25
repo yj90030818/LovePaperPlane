@@ -50,7 +50,7 @@ public class GameUtil {
     }
 
     public static void nextV_y(GameObject go){
-        go.setV_y(go.getV_y() - G);
+//         go.setV_y(go.getV_y() - G);
     }
 
     //--
