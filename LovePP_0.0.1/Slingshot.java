@@ -1,24 +1,23 @@
 
 public class Slingshot extends GameObject{
-    private PaperPlane Plane = null;//, Plane2 = null;
-    private double P1_x, P1_y; //plane initial position
-    private double P2_x, P2_y;   
+    private PaperPlane Plane = null;
+    private double[2] first_p; //plane initial position
+    
+     
 
     public Slingshot(double x, double y, int type, String fileName){
         super(type, fileName);     
         this.setX(x);
         this.setY(y);   
-        this.P1_x = x;
-        this.P1_y = y;//y - this.Height/4;
-        this.P2_x = 0;
-        this.P2_y = 0;
+        this.first_p[0] = x;
+        this.first_p[1] = y;
     }
 
     public void setPlane(PaperPlane pp){
         this.Plane = pp;
         if(pp != null){
-        this.Plane.setX(P1_x);
-        this.Plane.setY(P1_y);
+        this.Plane.setX(first_p[0]);
+        this.Plane.setY(first_p[1]);
         }
     }
 
@@ -26,17 +25,14 @@ public class Slingshot extends GameObject{
         return this.Plane;
     }
     
+   public void DragMove(int x_drag, int y_darg){
+       int range = 100;
+       x_drag = (Math.abs(x_drag) < range ? x_drag : range);
+       y_drag = (Math.abs(y_drag) < range ? y_drag : range);
+       this.Plane.setX(this.Plane.getX() + x_drag);
+       this.Plame.setY(this.Plane.getY() + y_drag);
+        
+   }
    
-
-    // public void setPlane2(PaperPlane plane2) {
-    //     this.Plane2 = plane2;
-    //     if(plane2 != null){
-    //         this.Plane2.setX(P2_x);
-    //         this.Plane2.setY(P2_y);
-    //     }
-    // }
-
-    // public PaperPlane getPlane2() {
-    //     return this.Plane2;
-    // }
+    
 }
