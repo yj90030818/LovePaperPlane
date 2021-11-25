@@ -19,7 +19,7 @@ public class Primary extends Thread{
     @Override
     public void run() {
         while(game){
-            System.out.println("time = "+System.currentTimeMills);
+            
             nowPlane = Planes.get(0);
             if(nowPlane.getState()==0)
                 Slingshot.setPlane1(nowPlane);
@@ -35,6 +35,7 @@ public class Primary extends Thread{
             //         break;
             //     }
             // }
+            System.out.println("AAAAAAAAAAAAAAAAAAAAAA time = "+System.currentTimeMills);
             System.out.println("(X,Y)="+nowPlane.getX()+","+nowPlane.getY()+"|(V_x,V_y)="+nowPlane.getV_x()+","+nowPlane.getV_y());
             if(nowPlane == null)
                 game = false;
