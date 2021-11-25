@@ -23,7 +23,7 @@ public class Prepare {
         Planes.add(plane);
         Obstacle obstacle = new Obstacle(650, 100, 0, "po.png");
         Obstacles.add(obstacle);
-        Slingshot = new Slingshot(75, 50, 0, "ps.png");    
+        Slingshot = new Slingshot(75, 100, 0, "ps.png");    
     }
 
     public ArrayList<Obstacle> getObstacles() {
