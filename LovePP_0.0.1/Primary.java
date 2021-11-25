@@ -19,7 +19,7 @@ public class Primary extends Thread{
     @Override
     public void run() {
         while(game){
-
+            System.out.println(System.currentTimeMills);
             nowPlane = Planes.get(0);
             if(nowPlane.getState()==0)
                 Slingshot.setPlane1(nowPlane);
