@@ -45,12 +45,12 @@ public class GameUtil {
     //Movement--
     public static void nextPosition(GameObject go){
         // System.out.println("(X,Y)="+go.getX()+","+go.getY()+"|(V_x,V_y)="+go.getV_x()+","+go.getV_y());   
-        go.setX(go.getX() + go.getV_x()/ 10.0);
-        go.setY(go.getY() + go.getV_y()/ 10.0);
+        go.setX(go.getX() + go.getV_x()/ 5.0);
+        go.setY(go.getY() + go.getV_y()/ 5.0);
     }
 
     public static void nextV_y(GameObject go){
-        go.setV_y(go.getV_y() - G/10.0);
+        go.setV_y(go.getV_y() - G/5.0);
     }
 
     //--
