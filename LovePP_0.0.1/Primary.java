@@ -12,8 +12,9 @@ public class Primary extends Thread{
         Planes = prepare.getPlanes();
         Obstacles = prepare.getObstacles();
         Slingshot = prepare.getSlingshot(); 
-        Planes.get(0).setV_x(5);
-        Planes.get(0).setV_y(5);
+        nowPlane = Planes.get(0);
+//         Planes.get(0).setV_x(5);
+//         Planes.get(0).setV_y(5);
     }
 
     @Override
@@ -21,7 +22,7 @@ public class Primary extends Thread{
         
         while(game){
             
-            nowPlane = Planes.get(0);
+            
             if(nowPlane.getState()==0)
                 Slingshot.setPlane1(nowPlane);
             // for(int index = 0; index <= Planes.size(); index++){
