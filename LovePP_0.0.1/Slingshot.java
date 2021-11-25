@@ -1,6 +1,6 @@
 
 public class Slingshot extends GameObject{
-    private PaperPlane Plane1 = null;//, Plane2 = null;
+    private PaperPlane Plane = null;//, Plane2 = null;
     private double P1_x, P1_y; //plane initial position
     private double P2_x, P2_y;   
 
@@ -10,21 +10,23 @@ public class Slingshot extends GameObject{
         this.setY(y);   
         this.P1_x = x;
         this.P1_y = 100;//y - this.Height/4;
-        this.P2_x = this.X - 100;
-        this.P2_y = GameFrame.HEIGHT - 100;
+        this.P2_x = 0;
+        this.P2_y = 0;
     }
 
-    public void setPlane1(PaperPlane pp){
-        this.Plane1 = pp;
+    public void setPlane(PaperPlane pp){
+        this.Plane = pp;
         if(pp != null){
-        this.Plane1.setX(P1_x);
-        this.Plane1.setY(P1_y);
+        this.Plane.setX(P1_x);
+        this.Plane.setY(P1_y);
         }
     }
 
-    public PaperPlane getPlane1(){
-        return this.Plane1;
+    public PaperPlane getPlane(){
+        return this.Plane;
     }
+    
+   
 
     // public void setPlane2(PaperPlane plane2) {
     //     this.Plane2 = plane2;
