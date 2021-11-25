@@ -19,7 +19,7 @@ public class Prepare {
 
     //Load in GameObject [UNFINISHED!!!]
     public void Load_Object(int Stage_ID){
-        PaperPlane plane = new PaperPlane(0, "pp.png");
+        PaperPlane plane = new PaperPlane(0, "pp01.png");
         Planes.add(plane);
         Obstacle obstacle = new Obstacle(650, 100, 0, "po.png");
         Obstacles.add(obstacle);
