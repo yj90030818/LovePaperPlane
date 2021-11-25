@@ -45,7 +45,7 @@ public class Primary extends Thread{
             if(nowPlane.getState() == 1){
                 
             }
-            nowPlane.setState(2);
+            //nowPlane.setState(2);
             //fly
             if(nowPlane.getState() == 2){
                 try {
