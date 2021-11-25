@@ -35,7 +35,7 @@ public class Primary extends Thread{
             //         break;
             //     }
             // }
-            System.out.println("AAAAAAAAAAAAAAAAAAAAAA time = "+System.currentTimeMills);
+            System.out.println("AAAAAAAAAAAAAAAAAAAAAA time = "+System.currentTimeMills());
             System.out.println("(X,Y)="+nowPlane.getX()+","+nowPlane.getY()+"|(V_x,V_y)="+nowPlane.getV_x()+","+nowPlane.getV_y());
             if(nowPlane == null)
                 game = false;
