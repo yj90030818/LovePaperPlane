@@ -46,11 +46,11 @@ public class GameUtil {
     public static void nextPosition(GameObject go){
         // System.out.println("(X,Y)="+go.getX()+","+go.getY()+"|(V_x,V_y)="+go.getV_x()+","+go.getV_y());   
         go.setX(go.getX() + go.getV_x());
-        go.setY(go.getY() + go.getV_y()*0.04);
+        go.setY(go.getY() + go.getV_y()/9.8);
     }
 
     public static void nextV_y(GameObject go){
-        go.setV_y(go.getV_y() - G*0.04);
+        go.setV_y(go.getV_y() - G);
     }
 
     //--
