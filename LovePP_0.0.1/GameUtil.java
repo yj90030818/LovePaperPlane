@@ -45,7 +45,7 @@ public class GameUtil {
     //Movement--
     public static void nextPosition(GameObject go){
         // System.out.println("(X,Y)="+go.getX()+","+go.getY()+"|(V_x,V_y)="+go.getV_x()+","+go.getV_y());   
-        go.setX(go.getX() + go.getV_x()*9.8);
+        go.setX(go.getX() + go.getV_x());
         go.setY(go.getY() + go.getV_y());
     }
 
