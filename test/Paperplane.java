@@ -10,7 +10,6 @@ public class Paperplane extends GameObject{
     double i = 0.0,j =0.0,k = 0.0;
     double original_x = 0.0,original_y = 0.0,change = 0.0,adjustment = 4.0, direction = 1.0,x0 = 0.0,y0 = 0.0;
         double angle = 0.0;	
-     //public Paperplane(){}
     
     public Paperplane(double x, double y, int type, String ImgResource){
         super(x, y, type, ImgResource);
@@ -26,16 +25,7 @@ public class Paperplane extends GameObject{
                 	if(y >= 550 || x >= 850){
                     	    live = false;
                 	}else{
-                    	    /*j = x_removing(getV0(),getAngle(),i);			
-                    	    x = original_x + j * adjustment * direction;
-                    	    y = original_y - locus(j,getV0(),getAngle()) * adjustment;
-                    	    i = i + 0.1;
-                    	    k = x_removing(getV0(),getAngle(),i);
-			
-                    	    //利用飛行角度轉紙飛機			
-                    	    change = locus(k,getV0(),getAngle()) - locus(j,getV0(),getAngle());
-                    	    g2.rotate(direction * -Angle(k-j,change),x,y);*/
-
+                    	  
                     	    g2.rotate(Angle(x - x0,y - y0),x,y);
                     	    x0 = getX();
                     	    y0 = getY();
