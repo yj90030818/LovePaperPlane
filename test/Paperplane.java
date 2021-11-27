@@ -9,12 +9,11 @@ public class Paperplane extends GameObject{
     boolean live = true , go = false, show  =  false ,dragFlag = false; 
     double i = 0.0,j =0.0,k = 0.0;
     double original_x = 0.0,original_y = 0.0,change = 0.0,adjustment = 4.0, direction = 1.0,x0 = 0.0,y0 = 0.0;
-//         double angle = 0.0;	
     
     public Paperplane(double x, double y, int type, String ImgResource){
         super(x, y, type, ImgResource);
-        this.original_x = x;
-        this.original_y = y;
+//         this.original_x = x;
+//         this.original_y = y;
     }
 
     //繪製紙飛機
@@ -83,7 +82,7 @@ public class Paperplane extends GameObject{
     public void mouseRelease(MouseEvent e){
         if(e.isMetaDown()){
             go = true; 
-			x0=x;
+		x0=x;
 	    	y0=y;
 	    	original_x=x;
 	    	original_y=y;
