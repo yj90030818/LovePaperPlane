@@ -44,10 +44,10 @@ public class Paperplane extends GameObject{
     }
 
     //計算軌跡方程式總時間 useless
-    public double time(double v0,double angle){
-        double radians = Math.toRadians(angle);
-        return 2 * v0 * Math.sin(radians) / 9.8;
-    }
+//     public double time(double v0,double angle){
+//         double radians = Math.toRadians(angle);
+//         return 2 * v0 * Math.sin(radians) / 9.8;
+//     }
 
     //計算軌跡方程式最高點 useless
     public double height(double v0,double angle){
