@@ -38,14 +38,14 @@ public GameThread(GamePanel panel){
             }
         }
 
-        public void Clicked(MouseEvent e){
+        public void Clicked(){
 		if(!(plane.live) && (planeNo <= p.slingShot.planes.size())){
                         planeNo = planeNo + 1;
             		plane = p.slingShot.planes.get(planeNo);
 		}
         }
 
-        public void WheelMoved(MouseWheelEvent e){
+        public void WheelMoved(){
             plane = p.slingShot.planes.get(planeNo);
         }
 }
