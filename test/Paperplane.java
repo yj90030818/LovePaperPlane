@@ -10,7 +10,7 @@ public class Paperplane extends GameObject{
     double i = 0.0,j =0.0,k = 0.0;
     double original_x = 0.0,original_y = 0.0,change = 0.0,adjustment = 4.0, direction = 1.0,x0 = 0.0,y0 = 0.0;
         double angle = 0.0;	
-     public Paperplane(){}
+     //public Paperplane(){}
     
     public Paperplane(double x, double y, int type, String ImgResource){
         super(x, y, type, ImgResource);
