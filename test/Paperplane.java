@@ -44,10 +44,10 @@ public class Paperplane extends GameObject{
     }
 
     //計算軌跡方程式總距離
-    public double removing (double v0,double angle){
-        double radians = Math.toRadians(angle);
-        return 2.0 * Math.pow(v0,2.0) * Math.sin(radians) * Math.cos(radians) / 9.8;
-    }
+//     public double removing (double v0,double angle){
+//         double radians = Math.toRadians(angle);
+//         return 2.0 * Math.pow(v0,2.0) * Math.sin(radians) * Math.cos(radians) / 9.8;
+//     }
 
     //計算軌跡方程式總時間 useless
     public double time(double v0,double angle){
