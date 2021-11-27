@@ -6,12 +6,31 @@ import java.util.ArrayList;
 
 //遊戲物件的父類別，讓子類別可以調用父類別的方法
 public class GameObject{
-    protected Image img;
-    protected int width, height, type;
-    protected double x, y, v0, angle;
-    private String ImgResource;
+    Image img;
+    int width, height, type;
+    double x, y, v0, angle;
+    String ImgResource;
+    ArrayList<Paperplane> planes = new ArrayList<>();
+
+    public GameObject(){}
+
+//     public GameObject(Image img, double x, double y, Paperplane plane){
+//         super();
+//         this.img = img;
+//         this.x = x;
+//         this.y = y;
+//         this.plane = plane;
+//     }
+
+//     public GameObject(Image img, double x, double y){
+//         super();
+//         this.img = img;
+//         this.x = x;
+//         this.y = y;
+//     }
 
     public GameObject(double x, double y, int type, String ImgResource){
+//         super();
         this.x = x;
         this.y = y;
         this.type = type;
@@ -21,6 +40,19 @@ public class GameObject{
         this.height = img.getHeight(null);
     }
     
+    public GameObject(double x, double y, int type, String ImgResource, ArrayList<Paperplane> planes){
+        this(x, y, type, ImgResource);
+        this.planes = planes;
+    }
+    
+    public void drawSelf(Graphics g){
+        g.drawImage(img, (int)x, (int)y, null);
+    }
+
+    public void drawSelf(Graphics2D g2){
+        g2.drawImage(img,(int)x,(int)y, null);
+    }
+
     public Rectangle getRect(){
         return new Rectangle((int)x, (int)y, width, height);
     }
@@ -57,6 +89,14 @@ public class GameObject{
         return angle;
     }
     
+    public void setImg(Image img){
+        this.img = img;
+    }
+    
+    public String getImgResource(){
+        return this.ImgResource;
+    }
+    
     public int getType(){
         return this.type;
     } 
@@ -67,9 +107,5 @@ public class GameObject{
     
     public int getHeight(){
         return this.height;
-    }
-    
-    public Image getImg(){
-        return this.img;
     }
 }

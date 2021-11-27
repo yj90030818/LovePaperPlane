@@ -19,7 +19,7 @@ public class GameUtil{
             e.printStackTrace();
         }
 
-        if(num == 1){ //plane
+        /*if(num == 1){ //plane
             //image = bi.getScaledInstance(60,40,Image.SCALE_DEFAULT);
             image = bi;
         }
@@ -31,9 +31,9 @@ public class GameUtil{
         }
         else if(num == 4){ //photo
             image = bi;
-        }
+        }*/
 
-        return image;
+        return bi;
     }
  
 }

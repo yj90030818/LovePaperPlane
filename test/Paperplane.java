@@ -6,8 +6,10 @@ import java.awt.event.MouseEvent;
 import java.awt.event.KeyEvent;
 
 public class Paperplane extends GameObject{
-    boolean live = true , go = false, show  =  false ,dragFlag = false; 
-    double original_x = 0.0,original_y = 0.0,adjustment = 4.0, direction = 1.0,x0 = 0.0,y0 = 0.0;
+    boolean live = true , go = false, show  =  false , shoot  =  false , dragFlag = false; 
+    double i = 0.0,j =0.0,k = 0.0;
+    double original_x = 0.0,original_y = 0.0,change = 0.0,adjustment = 4.0, direction = 1.0,x0 = 0.0,y0 = 0.0;
+        double angle = 0.0;	
     
     public Paperplane(double x, double y, int type, String ImgResource){
         super(x, y, type, ImgResource);
@@ -43,17 +45,23 @@ public class Paperplane extends GameObject{
         return v0 * Math.cos(radians) * t;
     }
 
+    //計算軌跡方程式總距離
+    public double removing (double v0,double angle){
+        double radians = Math.toRadians(angle);
+        return 2.0 * Math.pow(v0,2.0) * Math.sin(radians) * Math.cos(radians) / 9.8;
+    }
+
     //計算軌跡方程式總時間 useless
-//     public double time(double v0,double angle){
-//         double radians = Math.toRadians(angle);
-//         return 2 * v0 * Math.sin(radians) / 9.8;
-//     }
+    public double time(double v0,double angle){
+        double radians = Math.toRadians(angle);
+        return 2 * v0 * Math.sin(radians) / 9.8;
+    }
 
     //計算軌跡方程式最高點 useless
-//     public double height(double v0,double angle){
-//         double radians = Math.toRadians(angle);
-//         return Math.pow(v0,2) * Math.pow(Math.sin(radians),2) / (2.0 * 9.8);
-//     }
+    public double height(double v0,double angle){
+        double radians = Math.toRadians(angle);
+        return Math.pow(v0,2) * Math.pow(Math.sin(radians),2) / (2.0 * 9.8);
+    }
 
     //軌跡方程式
     public double locus(double x,double v0,double angle){
@@ -62,9 +70,9 @@ public class Paperplane extends GameObject{
     }
 
     //滑翔軌跡方程式
-//     public double fun(double y,double h){
-//         return Math.sqrt(-0.05 * Math.pow((y - h),3) + Math.pow((y - h),2));
-//     }
+    public double fun(double y,double h){
+        return Math.sqrt(-0.05 * Math.pow((y - h),3) + Math.pow((y - h),2));
+    }
 
     //計算飛行過程角度
     public double Angle(double x,double y){
@@ -72,13 +80,13 @@ public class Paperplane extends GameObject{
     }
 
     //滑鼠放開事件
-    public void Launch(MouseEvent e){
+    public void mouseRelease(MouseEvent e){
         if(e.isMetaDown()){
             go = true; 
-	    x0=x;
-	    y0=y;
- 	    original_x=x;
-	    original_y=y;
+			x0=x;
+	    	y0=y;
+	    	original_x=x;
+	    	original_y=y;
         }
         dragFlag = false;
         

@@ -1,3 +1,4 @@
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -8,45 +9,86 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 public class GamePanel extends JPanel{
+	boolean win = false;
     private GameThread t;
     private ArrayList<Paperplane> planes = setPlanes();
-    private Obstacle obstacle = new Obstacle(650, 300, 2,"images/po.png"); //ArrayList<Obstacle> obstacles;
+    private ArrayList<Obstacle> obstacles = setObstacles();
+
+//    private Paperplane plane = new Paperplane(55, 400, 1, "images/pp.png");//ArrayList<Paperplane> planes;
+//    private Obstacle obstacle = new Obstacle(650, 300, 2,"images/po.png"); //ArrayList<Obstacle> obstacles;
+//     private ArrayList<Target> targets;
     public Slingshot slingShot = new Slingshot(50, 400, 3,"images/ps.png",planes);
-    private PaintThread pt = new PaintThread();
+    public Target target = new Target(650, 400, 4,"images/pt.png");
+    private PaintThread thread = new PaintThread();
+	Image backgroundImg = GameUtil.getImage(4, "images/pbackground.png");    
     
     
-        public GamePanel(){
+//     public GamePanel(ArrayList<Paperplane> planes, ArrayList<Obstacle> obstacles, Slingshot slingShot){}
+    public GamePanel(){
 	setPlanes();
         setBackground(Color.white);
+        //addKeyListener(new KeyMonitor());
         addMouseListener(new MouseMonitor());
         addMouseMotionListener(new MouseMonitor());
         addMouseWheelListener(new MouseMonitor());
-        pt.start();
+        thread.start();
 	t = new GameThread(this);
 	t.start();
-	
-	}
+
+    }
     
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
+	g.drawImage(backgroundImg,0,0,null);
         Graphics2D g2 = (Graphics2D)g;
-        g.setColor(Color.BLACK);
-        g.drawRect(0,0,800,500);
-        g.drawString(String.valueOf(planes.size()),100,100);
+        //g.setColor(Color.BLACK);
+        //g.drawRect(0,0,800,500);
+        //g.drawString(String.valueOf(planes.size()),100,100);
+
+        target.drawSelf(g2);
+	for(int i = 0;i < obstacles.size();i++){
+	boolean ko = obstacles.get(i).getRect().intersects(target.getRect());
+	if(ko && (obstacles.get(i).y >= 300)){
+	win = true;
+	Font f = new Font("Times New Roman",Font.BOLD,50);
+	g.setFont(f);
+	g.setColor(Color.RED);
+	g.drawString("You Win!",280,250);
+	}
+	}
+
         slingShot.drawSelf(g2);
-   	obstacle.drawSelf(g2);
+
+        for(int i = 0;i < obstacles.size();i++){
+	   	obstacles.get(i).drawSelf(g2);
+	}
         for(int i = 0;i < planes.size();i++){
         if(planes.get(i).show){	
-	
+
         planes.get(i).drawSelf(g2);
-       	boolean crash = planes.get(i).getRect().intersects(obstacle.getRect());
+        for(int j = 0;j < obstacles.size();j++){
+        boolean crash = planes.get(i).getRect().intersects(obstacles.get(j).getRect());
         if(crash){
             planes.get(i).live = false;
-            obstacle.live = false;
+            obstacles.get(j).live = false;
         }
         }
+	}
         }
+
+        for(int i = 0;i < obstacles.size();i++){
+        for(int j = i + 1;j < obstacles.size();j++){
+	boolean fall = obstacles.get(i).getRect().intersects(obstacles.get(j).getRect());
+	if(fall){
+	obstacles.get(i).fall = false;
+	obstacles.get(j).fall = false;
+	}else{
+	obstacles.get(i).fall = true;
+	obstacles.get(j).fall = true;	
+       	}
+	}
+	}
     }
 
     public ArrayList<Paperplane> setPlanes(){
@@ -57,13 +99,21 @@ public class GamePanel extends JPanel{
 	return p;
     }
     
+    public ArrayList<Obstacle> setObstacles(){
+	ArrayList<Obstacle> o = new ArrayList<>();
+        for(int i = 0;i < 2;i++){
+            o.add(new Obstacle(500, 300 - i * 850, 1, "images/po.png"));
+	}
+	return o;
+    }
+
     class PaintThread extends Thread{
         @Override
         public void run(){
-            while(true){
+            while(!win){
                 repaint();
                 try{
-                    pt.sleep(50);
+                    Thread.sleep(50);
                 }catch(InterruptedException e){
                     e.printStackTrace();
                 }
@@ -73,8 +123,8 @@ public class GamePanel extends JPanel{
     class MouseMonitor extends MouseAdapter{
         @Override
         public void mouseClicked(MouseEvent e){
-            slingShot.setPlane();
-            t.Clicked();
+            slingShot.setPlane(e);
+            t.Clicked(e);
         }
 
         @Override
@@ -95,11 +145,15 @@ public class GamePanel extends JPanel{
         @Override
         public void mouseWheelMoved(MouseWheelEvent e){
             slingShot.changePlane(e);
-	    t.WheelMoved();
+	        t.WheelMoved(e);
         }
 
     }
 
-   
-	
+    /*class KeyMonitor extends KeyAdapter{
+        @Override
+        public void keyReleased(KeyEvent e){
+            plane.keyRelease(e);
+        }
+    }*/
 }
