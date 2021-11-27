@@ -84,8 +84,8 @@ public class Paperplane extends GameObject{
             go = true; 
 		x0=x;
 	    	y0=y;
-// 	    	original_x=x;
-// 	    	original_y=y;
+	    	original_x=x;
+	    	original_y=y;
         }
         dragFlag = false;
         
