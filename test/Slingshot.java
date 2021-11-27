@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class Slingshot extends GameObject{
     Paperplane plane ;//= new Paperplane();
     ArrayList<Paperplane> planes = new ArrayList<>();
-//     boolean shoot = false;
+    boolean shoot = false;
 // 	    ,collison = false;
     int i = 0;
     double adjustment = 4.0;
@@ -21,7 +21,7 @@ public class Slingshot extends GameObject{
         super( x, y, type, ImgResource);
 	this.planes = planes;
         this.plane = planes.get(i);
-//         plane.show = true;
+        plane.show = true;
     }
 
     //繪製彈弓
@@ -79,7 +79,7 @@ public class Slingshot extends GameObject{
     //滑鼠放開事件
     public void lastpoint(MouseEvent e){
         if(plane.isDragging()){
-//             shoot = false;
+            shoot = false;
             plane.setV0(Force());
             plane.setAngle(Angle());
             plane.Launch(e);	
