@@ -68,4 +68,8 @@ public class GameObject{
     public int getHeight(){
         return this.height;
     }
+    
+    public Image getImg(){
+        return this.Img;
+    }
 }
