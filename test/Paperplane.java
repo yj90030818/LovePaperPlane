@@ -94,6 +94,10 @@ public class Paperplane extends GameObject{
     public void mouseRelease(MouseEvent e){
         if(e.isMetaDown()){
             go = true; 
+			x0=x;
+	    	y0=y;
+	    	original_x=x;
+	    	original_y=y;
         }
         dragFlag = false;
         
