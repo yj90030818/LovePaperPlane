@@ -10,7 +10,8 @@ import java.util.ArrayList;
 public class Slingshot extends GameObject{
     Paperplane plane ;//= new Paperplane();
     ArrayList<Paperplane> planes = new ArrayList<>();
-    boolean shoot = false,collison = false;
+    boolean shoot = false
+// 	    ,collison = false;
     int i = 0;
     double adjustment = 4.0;
     double pressed_x = 0.0, pressed_y = 0.0, released_x = 0.0,released_y = 0.0;   //滑鼠按住和放開的座標參數
