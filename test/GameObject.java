@@ -70,6 +70,6 @@ public class GameObject{
     }
     
     public Image getImg(){
-        return this.Img;
+        return this.img;
     }
 }
