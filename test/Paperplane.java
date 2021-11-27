@@ -6,7 +6,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.KeyEvent;
 
 public class Paperplane extends GameObject{
-    boolean live = true , go = false, show  =  false , shoot  =  false , dragFlag = false; 
+    boolean live = true , go = false, show  =  false ,dragFlag = false; 
+// 	 shoot  =  false , 
     double i = 0.0,j =0.0,k = 0.0;
     double original_x = 0.0,original_y = 0.0,change = 0.0,adjustment = 4.0, direction = 1.0,x0 = 0.0,y0 = 0.0;
         double angle = 0.0;	
