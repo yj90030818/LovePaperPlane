@@ -8,7 +8,8 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 public class Slingshot extends GameObject{
-    Paperplane plane = new Paperplane();
+    Paperplane plane ;//= new Paperplane();
+    ArrayList<Paperplane> planes = new ArrayList<>();
     boolean shoot = false,collison = false;
     int i = 0;
     double adjustment = 4.0;
