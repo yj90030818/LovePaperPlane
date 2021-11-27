@@ -11,8 +11,6 @@ public class GameObject{
     double x, y, v0, angle;
     String ImgResource;
 
-    //public GameObject(){}
-
     public GameObject(double x, double y, int type, String ImgResource){
         this.x = x;
         this.y = y;
