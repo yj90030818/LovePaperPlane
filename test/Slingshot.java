@@ -85,15 +85,15 @@ public class Slingshot extends GameObject{
     }
 
     //準備飛機
-    public void setPlane(MouseEvent e){
-	if(!plane.live){
-            if(i < planes.size()-1){
-            	i = i + 1;          	
-            	this.plane = planes.get(i);
-            	plane.show = true;
-            }
-        }
-    }
+//     public void setPlane(MouseEvent e){
+// 	if(!plane.live){
+//             if(i < planes.size()-1){
+//             	i = i + 1;          	
+//             	this.plane = planes.get(i);
+//             	plane.show = true;
+//             }
+//         }
+//     }
 
     //替換飛機
     public void changePlane(MouseWheelEvent e){
