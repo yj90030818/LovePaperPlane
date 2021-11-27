@@ -12,8 +12,8 @@ public class Paperplane extends GameObject{
     
     public Paperplane(double x, double y, int type, String ImgResource){
         super(x, y, type, ImgResource);
-//         this.original_x = x;
-//         this.original_y = y;
+        this.original_x = x;
+        this.original_y = y;
     }
 
     //繪製紙飛機
