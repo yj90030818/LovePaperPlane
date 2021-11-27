@@ -14,7 +14,7 @@ public class Slingshot extends GameObject{
 // 	    ,collison = false;
     int i = 0;
     double adjustment = 4.0;
-    double pressed_x = 0.0, pressed_y = 0.0, released_x = 0.0,released_y = 0.0;   //滑鼠按住和放開的座標參數
+    private double pressed_x = 0.0, pressed_y = 0.0, released_x = 0.0,released_y = 0.0;   //滑鼠按住和放開的座標參數
 
     
     public Slingshot(double x, double y, int type, String ImgResource, ArrayList<Paperplane> planes){
