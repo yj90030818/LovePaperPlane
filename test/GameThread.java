@@ -30,7 +30,7 @@ public GameThread(GamePanel panel){
 			time = 0.0;
 		}
                 try{
-                    Thread.sleep(100);
+                    Thread.sleep(50);
                 }catch(InterruptedException e){
                     e.printStackTrace();
                 }
