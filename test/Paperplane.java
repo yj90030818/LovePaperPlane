@@ -72,7 +72,7 @@ public class Paperplane extends GameObject{
     }
 
     //滑鼠放開事件
-    public void Launch(MouseEvent e){
+    public void Launch(){
             go = true; 
 	    x0=x;
 	    y0=y;
