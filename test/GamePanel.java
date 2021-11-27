@@ -11,29 +11,22 @@ import java.awt.event.KeyEvent;
 public class GamePanel extends JPanel{
     private GameThread t;
     private ArrayList<Paperplane> planes = setPlanes();
-//    private ArrayList<Obstacle> obstacles = new ArrayList<>();
-
-//    private Paperplane plane = new Paperplane(55, 400, 1, "images/pp.png");//ArrayList<Paperplane> planes;
     private Obstacle obstacle = new Obstacle(650, 300, 2,"images/po.png"); //ArrayList<Obstacle> obstacles;
-//     private ArrayList<Target> targets;
     public Slingshot slingShot = new Slingshot(50, 400, 3,"images/ps.png",planes);
     private PaintThread thread = new PaintThread();
     
     
-    
-//     public GamePanel(ArrayList<Paperplane> planes, ArrayList<Obstacle> obstacles, Slingshot slingShot){}
-    public GamePanel(){
+        public GamePanel(){
 	setPlanes();
         setBackground(Color.white);
-        //addKeyListener(new KeyMonitor());
         addMouseListener(new MouseMonitor());
         addMouseMotionListener(new MouseMonitor());
         addMouseWheelListener(new MouseMonitor());
         thread.start();
 	t = new GameThread(this);
 	t.start();
-
-    }
+	
+	}
     
     @Override
     public void paintComponent(Graphics g){
@@ -46,12 +39,9 @@ public class GamePanel extends JPanel{
    	obstacle.drawSelf(g2);
         for(int i = 0;i < planes.size();i++){
         if(planes.get(i).show){	
-	//g2.translate(30,20);
-	//g2.rotate(planes.get(i).angle,planes.get(i).x,planes.get(i).y);
-
+	
         planes.get(i).drawSelf(g2);
-        //g2.rotate(-planes.get(i).angle,planes.get(i).x,planes.get(i).y);
-        boolean crash = planes.get(i).getRect().intersects(obstacle.getRect());
+       	boolean crash = planes.get(i).getRect().intersects(obstacle.getRect());
         if(crash){
             planes.get(i).live = false;
             obstacle.live = false;
@@ -111,10 +101,6 @@ public class GamePanel extends JPanel{
 
     }
 
-    /*class KeyMonitor extends KeyAdapter{
-        @Override
-        public void keyReleased(KeyEvent e){
-            plane.keyRelease(e);
-        }
-    }*/
+   
+	
 }
