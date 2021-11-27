@@ -24,10 +24,10 @@ public class GameObject{
         this.height = img.getHeight(null);
     }
     
-    public GameObject(double x, double y, int type, String ImgResource, ArrayList<Paperplane> planes){
-        this(x, y, type, ImgResource);
-        this.planes = planes;
-    }
+//     public GameObject(double x, double y, int type, String ImgResource, ArrayList<Paperplane> planes){
+//         this(x, y, type, ImgResource);
+//         this.planes = planes;
+//     }
     
     public void drawSelf(Graphics g){
         g.drawImage(img, (int)x, (int)y, null);
