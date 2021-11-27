@@ -14,23 +14,7 @@ public class GameObject{
 
     public GameObject(){}
 
-//     public GameObject(Image img, double x, double y, Paperplane plane){
-//         super();
-//         this.img = img;
-//         this.x = x;
-//         this.y = y;
-//         this.plane = plane;
-//     }
-
-//     public GameObject(Image img, double x, double y){
-//         super();
-//         this.img = img;
-//         this.x = x;
-//         this.y = y;
-//     }
-
     public GameObject(double x, double y, int type, String ImgResource){
-//         super();
         this.x = x;
         this.y = y;
         this.type = type;
