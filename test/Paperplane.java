@@ -36,7 +36,6 @@ public class Paperplane extends GameObject{
                     	    change = locus(k,getV0(),getAngle()) - locus(j,getV0(),getAngle());
                     	    g2.rotate(direction * -Angle(k-j,change),x,y);*/
 
-			    g2.translate(30,20);
                     	    g2.rotate(Angle(x - x0,y - y0),x,y);
                     	    x0 = getX();
                     	    y0 = getY();
