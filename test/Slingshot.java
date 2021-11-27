@@ -17,8 +17,6 @@ public class Slingshot extends GameObject{
     
     public Slingshot(double x, double y, int type, String ImgResource, ArrayList<Paperplane> planes){
         super( x, y, type, ImgResource, planes);
-	//planes.get(i).shoot = true;
-	//setPlane(planes);
         this.plane = planes.get(i);
         plane.show = true;
     }
@@ -86,18 +84,16 @@ public class Slingshot extends GameObject{
         }
     }
 
-    //準備飛機
-    public void setPlane(MouseEvent e){
-	if(!plane.live){
-            //if(planes.size()-1 > 0){
-            if(i < planes.size()-1){
-            	i = i + 1;
-            //planes.remove(0);            	
-            	this.plane = planes.get(i);
-            	plane.show = true;
-            }
-        }
-    }
+//     //準備飛機
+//     public void setPlane(MouseEvent e){
+// 	if(!plane.live){
+//             if(i < planes.size()-1){
+//             	i = i + 1;          	
+//             	this.plane = planes.get(i);
+//             	plane.show = true;
+//             }
+//         }
+//     }
 
     //替換飛機
     public void changePlane(MouseWheelEvent e){
@@ -127,10 +123,6 @@ public class Slingshot extends GameObject{
         }
     }
     
-    //準備飛機
-    /*public void setPlane(ArrayList<Paperplane> planes){
-	this.plane = planes.get(i);
-	plane.show = true;
-    }*/
+
 }
 
