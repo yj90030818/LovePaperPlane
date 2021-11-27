@@ -57,13 +57,9 @@ public class GameObject{
         return angle;
     }
     
-//     public void setImg(Image img){
-//         this.img = img;
+//     public String getImgResource(){
+//         return this.ImgResource;
 //     }
-    
-    public String getImgResource(){
-        return this.ImgResource;
-    }
     
     public int getType(){
         return this.type;
