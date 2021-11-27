@@ -50,10 +50,10 @@ public class Paperplane extends GameObject{
 //     }
 
     //計算軌跡方程式最高點 useless
-    public double height(double v0,double angle){
-        double radians = Math.toRadians(angle);
-        return Math.pow(v0,2) * Math.pow(Math.sin(radians),2) / (2.0 * 9.8);
-    }
+//     public double height(double v0,double angle){
+//         double radians = Math.toRadians(angle);
+//         return Math.pow(v0,2) * Math.pow(Math.sin(radians),2) / (2.0 * 9.8);
+//     }
 
     //軌跡方程式
     public double locus(double x,double v0,double angle){
