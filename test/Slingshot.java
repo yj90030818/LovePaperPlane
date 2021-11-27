@@ -17,7 +17,8 @@ public class Slingshot extends GameObject{
 
     
     public Slingshot(double x, double y, int type, String ImgResource, ArrayList<Paperplane> planes){
-        super( x, y, type, ImgResource, planes);
+        super( x, y, type, ImgResource);
+	this.planes = planes;
         this.plane = planes.get(i);
         plane.show = true;
     }
