@@ -10,7 +10,7 @@ public class GameObject{
     int width, height, type;
     double x, y, v0, angle;
     String ImgResource;
-    ArrayList<Paperplane> planes = new ArrayList<>();
+//     ArrayList<Paperplane> planes = new ArrayList<>();
 
     public GameObject(){}
 
