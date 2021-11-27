@@ -81,8 +81,7 @@ public class Slingshot extends GameObject{
             shoot = false;
             plane.setV0(Force());
             plane.setAngle(Angle());
-            if(e.isMetaDown())
-		plane.Launch();	
+            plane.mouseRelease(e);	
         }
     }
 
