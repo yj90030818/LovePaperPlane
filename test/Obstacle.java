@@ -32,4 +32,5 @@ public class Obstacle extends GameObject{
         g2.drawImage(img,(int)x,(int)y, null);
     	}
 	}
+}
 
