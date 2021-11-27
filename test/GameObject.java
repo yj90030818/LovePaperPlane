@@ -7,7 +7,7 @@ import java.util.ArrayList;
 //遊戲物件的父類別，讓子類別可以調用父類別的方法
 public class GameObject{
     protected Image img;
-    private int width, height, type;
+    protected int width, height, type;
     protected double x, y, v0, angle;
     private String ImgResource;
 
