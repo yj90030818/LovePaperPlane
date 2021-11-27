@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class GameObject{
     Image img;
     int width, height, type;
-    double x, y, v0, angle;
+    private double x, y, v0, angle;
     String ImgResource;
 
     public GameObject(double x, double y, int type, String ImgResource){
