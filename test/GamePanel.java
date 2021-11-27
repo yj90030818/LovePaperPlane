@@ -12,7 +12,7 @@ public class GamePanel extends JPanel{
     private ArrayList<Paperplane> planes = setPlanes();
     private Obstacle obstacle = new Obstacle(650, 300, 2,"images/po.png"); //ArrayList<Obstacle> obstacles;
     public Slingshot slingShot = new Slingshot(50, 400, 3,"images/ps.png",planes);
-    private PaintThread thread = new PaintThread();
+    private PaintThread pt = new PaintThread();
     
     
         public GamePanel(){
@@ -21,7 +21,7 @@ public class GamePanel extends JPanel{
         addMouseListener(new MouseMonitor());
         addMouseMotionListener(new MouseMonitor());
         addMouseWheelListener(new MouseMonitor());
-        thread.start();
+        pt.start();
 	t = new GameThread(this);
 	t.start();
 	
@@ -63,7 +63,7 @@ public class GamePanel extends JPanel{
             while(true){
                 repaint();
                 try{
-                    Thread.sleep(50);
+                    pt.sleep(50);
                 }catch(InterruptedException e){
                     e.printStackTrace();
                 }
