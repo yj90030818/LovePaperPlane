@@ -21,15 +21,6 @@ public class GameObject{
         this.height = img.getHeight(null);
     }
     
-  
-//     public void drawSelf(Graphics g){
-//         g.drawImage(img, (int)x, (int)y, null);
-//     }
-
-//     public void drawSelf(Graphics2D g2){
-//         g2.drawImage(img,(int)x,(int)y, null);
-//     }
-
     public Rectangle getRect(){
         return new Rectangle((int)x, (int)y, width, height);
     }
@@ -66,9 +57,9 @@ public class GameObject{
         return angle;
     }
     
-    public void setImg(Image img){
-        this.img = img;
-    }
+//     public void setImg(Image img){
+//         this.img = img;
+//     }
     
     public String getImgResource(){
         return this.ImgResource;
