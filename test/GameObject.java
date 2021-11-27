@@ -10,9 +10,8 @@ public class GameObject{
     int width, height, type;
     double x, y, v0, angle;
     String ImgResource;
-//     ArrayList<Paperplane> planes = new ArrayList<>();
 
-    public GameObject(){}
+    //public GameObject(){}
 
     public GameObject(double x, double y, int type, String ImgResource){
         this.x = x;
@@ -24,11 +23,7 @@ public class GameObject{
         this.height = img.getHeight(null);
     }
     
-//     public GameObject(double x, double y, int type, String ImgResource, ArrayList<Paperplane> planes){
-//         this(x, y, type, ImgResource);
-//         this.planes = planes;
-//     }
-    
+  
     public void drawSelf(Graphics g){
         g.drawImage(img, (int)x, (int)y, null);
     }
