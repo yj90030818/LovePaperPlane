@@ -46,7 +46,7 @@ public class Slingshot extends GameObject{
     
     //滑鼠按下事件
     public void firstpoint(MouseEvent e){
-            shoot = true;
+//             shoot = true;
             pressed_x = e.getX();
             pressed_y = e.getY();
     }
