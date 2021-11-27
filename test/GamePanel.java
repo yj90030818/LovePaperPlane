@@ -73,7 +73,7 @@ public class GamePanel extends JPanel{
     class MouseMonitor extends MouseAdapter{
         @Override
         public void mouseClicked(MouseEvent e){
-            slingShot.setPlane(e);
+            slingShot.setPlane();
             t.Clicked(e);
         }
 
