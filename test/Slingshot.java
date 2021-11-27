@@ -87,7 +87,7 @@ public class Slingshot extends GameObject{
     }
 
     //準備飛機
-    public void setPlane(MouseEvent e){
+    public void setPlane(){
 	if(!plane.live){
             if(i < planes.size()-1){
             	i = i + 1;          	
