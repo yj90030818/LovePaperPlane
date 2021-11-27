@@ -7,7 +7,7 @@ import java.awt.event.KeyEvent;
 
 public class Obstacle extends GameObject{
     boolean live = true;
-    double original_x = 0.0,original_y = 0.0,adjustment = 0.0,angle = 0.0;
+//     double original_x = 0.0,original_y = 0.0,adjustment = 0.0,angle = 0.0;
     
     public Obstacle(double x, double y, int type, String path){
         super(x, y, type, path);
