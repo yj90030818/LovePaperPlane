@@ -62,9 +62,9 @@ public class Paperplane extends GameObject{
     }
 
     //滑翔軌跡方程式
-    public double fun(double y,double h){
-        return Math.sqrt(-0.05 * Math.pow((y - h),3) + Math.pow((y - h),2));
-    }
+//     public double fun(double y,double h){
+//         return Math.sqrt(-0.05 * Math.pow((y - h),3) + Math.pow((y - h),2));
+//     }
 
     //計算飛行過程角度
     public double Angle(double x,double y){
