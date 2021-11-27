@@ -29,7 +29,5 @@ GamePanel panel;
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         panel = new GamePanel();        
         this.add(panel, BorderLayout.CENTER);
-        //GameThread t = new GameThread(panel);
-        //t.start();
     }
 }
