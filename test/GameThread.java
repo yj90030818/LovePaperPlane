@@ -1,5 +1,3 @@
-
-import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.awt.event.MouseAdapter;
@@ -43,7 +41,7 @@ public GameThread(GamePanel panel){
         public void Clicked(MouseEvent e){
 		if(!plane.live){
                         planeNo = planeNo + 1;
-            plane = p.slingShot.planes.get(planeNo);
+            		plane = p.slingShot.planes.get(planeNo);
 		}
         }
 
