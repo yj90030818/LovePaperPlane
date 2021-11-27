@@ -72,12 +72,15 @@ public class Paperplane extends GameObject{
     }
 
     //滑鼠放開事件
-    public void Launch(){
+    public void mouseRelease(MouseEvent e){
+        if(e.isMetaDown()){
             go = true; 
 	    x0=x;
 	    y0=y;
  	    original_x=x;
 	    original_y=y;
+        }
+        dragFlag = false;
         
     }
     
