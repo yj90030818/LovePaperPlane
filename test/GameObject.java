@@ -6,10 +6,10 @@ import java.util.ArrayList;
 
 //遊戲物件的父類別，讓子類別可以調用父類別的方法
 public class GameObject{
-    Image img;
-    int width, height, type;
-    double x, y, v0, angle;
-    String ImgResource;
+    private Image img;
+    private int width, height, type;
+    protected double x, y, v0, angle;
+    private String ImgResource;
 
     public GameObject(double x, double y, int type, String ImgResource){
         this.x = x;
