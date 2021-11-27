@@ -74,7 +74,7 @@ public class GamePanel extends JPanel{
         @Override
         public void mouseClicked(MouseEvent e){
             slingShot.setPlane();
-            t.Clicked(e);
+            t.Clicked();
         }
 
         @Override
@@ -95,7 +95,7 @@ public class GamePanel extends JPanel{
         @Override
         public void mouseWheelMoved(MouseWheelEvent e){
             slingShot.changePlane(e);
-	        t.WheelMoved(e);
+	    t.WheelMoved();
         }
 
     }
