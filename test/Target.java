@@ -8,7 +8,7 @@ import java.awt.event.KeyEvent;
 
 public class Target extends GameObject{
     //boolean live = true,fall = true;
-    double original_x = 0.0,original_y = 0.0,adjustment = 0.0,angle = 0.0;
+    private double original_x = 0.0,original_y = 0.0,adjustment = 0.0,angle = 0.0;
     
     public Target(double x, double y, int type, String path){
         super(x, y, type, path);
