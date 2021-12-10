@@ -12,8 +12,8 @@ public class Target extends GameObject{
     
     public Target(double x, double y, int type, String path){
         super(x, y, type, path);
-        this.original_x = x;
-        this.original_y = y;
+        //this.original_x = x;
+        //this.original_y = y;
     }
 
     //繪製紙飛機
