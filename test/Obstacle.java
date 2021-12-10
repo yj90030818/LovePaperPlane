@@ -31,6 +31,8 @@ public class Obstacle extends GameObject{
 	if(fall){
 		if(y < 300){
 		setY(y+10);
+		}else{
+			fall = false;
 		}
 	}
 	if(!live){

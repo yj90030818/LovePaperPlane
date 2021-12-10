@@ -10,8 +10,12 @@ import java.awt.event.KeyEvent;
 
 public class GamePanel extends JPanel{
 	boolean win = false;
+	boolean loss = false;
+	boolean finish = false;
+	boolean allStop = false;
     private GameThread t;
     private ArrayList<Paperplane> planes = setPlanes();
+	int planeNum = planes.size();
     private ArrayList<Obstacle> obstacles = setObstacles();
 
 //    private Paperplane plane = new Paperplane(55, 400, 1, "images/pp.png");//ArrayList<Paperplane> planes;
@@ -20,6 +24,7 @@ public class GamePanel extends JPanel{
     public Slingshot slingShot = new Slingshot(50, 400, 3,"images/ps.png",planes);
     public Target target = new Target(650, 400, 4,"images/pt.png");
     private PaintThread thread = new PaintThread();
+	Image planeNumImg = GameUtil.getImage(4, "images/pp01.png");
 	Image backgroundImg = GameUtil.getImage(4, "images/pbackground.png");    
     
     
@@ -41,6 +46,12 @@ public class GamePanel extends JPanel{
     public void paintComponent(Graphics g){
         super.paintComponent(g);
 	g.drawImage(backgroundImg,0,0,null);
+	g.drawImage(planeNumImg,20,20,null);
+	Font planeNumFont = new Font("Times New Roman",Font.BOLD,20);
+	g.setFont(planeNumFont);
+	g.setColor(Color.BLACK);
+	g.drawString(" X "+String.valueOf(planeNum),100,48);
+
         Graphics2D g2 = (Graphics2D)g;
         //g.setColor(Color.BLACK);
         //g.drawRect(0,0,800,500);
@@ -49,12 +60,8 @@ public class GamePanel extends JPanel{
         target.drawSelf(g2);
 	for(int i = 0;i < obstacles.size();i++){
 		boolean ko = obstacles.get(i).getRect().intersects(target.getRect());
-		if(ko && (obstacles.get(i).y >= 300)){
+		if(ko){
 			win = true;
-			Font f = new Font("Times New Roman",Font.BOLD,50);
-			g.setFont(f);
-			g.setColor(Color.RED);
-			g.drawString("You Win!",280,250);
 		}
 	}
 
@@ -70,12 +77,37 @@ public class GamePanel extends JPanel{
         		for(int j = 0;j < obstacles.size();j++){
         			boolean crash = planes.get(i).getRect().intersects(obstacles.get(j).getRect());
         			if(crash){
-            				planes.get(i).live = false;
+            				//planes.get(i).live = false;
             				obstacles.get(j).live = false;
         			}
         		}
 		}
         }
+	for(int i = 0;i < obstacles.size();i++){
+		if(obstacles.get(i).fall){
+			allStop = false;
+			break;
+		}
+		allStop = true;
+	}
+		if(allStop){
+			if(win){
+				finish = true;	
+				Font f = new Font("Times New Roman",Font.BOLD,50);
+				g.setFont(f);
+				g.setColor(Color.RED);
+				g.drawString("You Win!",280,250);
+			}
+			if(loss){
+				finish = true;	
+				Font f = new Font("Times New Roman",Font.BOLD,50);
+				g.setFont(f);
+				g.setColor(Color.RED);
+				g.drawString("Try Next Time!",200,250);
+			}
+			
+		}
+
 
         for(int i = 0;i < obstacles.size();i++){
         	for(int j = i + 1;j < obstacles.size();j++){
@@ -89,6 +121,7 @@ public class GamePanel extends JPanel{
        			}
 		}
 	}
+
     }
 
     public ArrayList<Paperplane> setPlanes(){
@@ -110,7 +143,7 @@ public class GamePanel extends JPanel{
     class PaintThread extends Thread{
         @Override
         public void run(){
-            while(!win){
+            while(!finish){
                 repaint();
                 try{
                     Thread.sleep(50);

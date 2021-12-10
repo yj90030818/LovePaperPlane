@@ -42,8 +42,16 @@ public GameThread(GamePanel panel){
 
         public void Clicked(MouseEvent e){
 		if(!plane.live){
+			if(planeNo < 2){
+			p.planeNum = p.planeNum - 1;
                         planeNo = planeNo + 1;
             plane = p.slingShot.planes.get(planeNo);
+			}else{
+				if(p.planeNum == 1){
+				p.planeNum = p.planeNum - 1;
+				}
+				p.loss = true;
+			}
 		}
         }
 
