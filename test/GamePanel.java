@@ -48,14 +48,14 @@ public class GamePanel extends JPanel{
 
         target.drawSelf(g2);
 	for(int i = 0;i < obstacles.size();i++){
-	boolean ko = obstacles.get(i).getRect().intersects(target.getRect());
-	if(ko && (obstacles.get(i).y >= 300)){
-	win = true;
-	Font f = new Font("Times New Roman",Font.BOLD,50);
-	g.setFont(f);
-	g.setColor(Color.RED);
-	g.drawString("You Win!",280,250);
-	}
+		boolean ko = obstacles.get(i).getRect().intersects(target.getRect());
+		if(ko && (obstacles.get(i).y >= 300)){
+			win = true;
+			Font f = new Font("Times New Roman",Font.BOLD,50);
+			g.setFont(f);
+			g.setColor(Color.RED);
+			g.drawString("You Win!",280,250);
+		}
 	}
 
         slingShot.drawSelf(g2);
@@ -64,30 +64,30 @@ public class GamePanel extends JPanel{
 	   	obstacles.get(i).drawSelf(g2);
 	}
         for(int i = 0;i < planes.size();i++){
-        if(planes.get(i).show){	
+        	if(planes.get(i).show){	
 
-        planes.get(i).drawSelf(g2);
-        for(int j = 0;j < obstacles.size();j++){
-        boolean crash = planes.get(i).getRect().intersects(obstacles.get(j).getRect());
-        if(crash){
-            planes.get(i).live = false;
-            obstacles.get(j).live = false;
-        }
-        }
-	}
+        		planes.get(i).drawSelf(g2);
+        		for(int j = 0;j < obstacles.size();j++){
+        			boolean crash = planes.get(i).getRect().intersects(obstacles.get(j).getRect());
+        			if(crash){
+            				planes.get(i).live = false;
+            				obstacles.get(j).live = false;
+        			}
+        		}
+		}
         }
 
         for(int i = 0;i < obstacles.size();i++){
-        for(int j = i + 1;j < obstacles.size();j++){
-	boolean fall = obstacles.get(i).getRect().intersects(obstacles.get(j).getRect());
-	if(fall){
-	obstacles.get(i).fall = false;
-	obstacles.get(j).fall = false;
-	}else{
-	obstacles.get(i).fall = true;
-	obstacles.get(j).fall = true;	
-       	}
-	}
+        	for(int j = i + 1;j < obstacles.size();j++){
+			boolean fall = obstacles.get(i).getRect().intersects(obstacles.get(j).getRect());
+			if(fall){
+				obstacles.get(i).fall = false;
+				obstacles.get(j).fall = false;
+			}else{
+				obstacles.get(i).fall = true;
+				obstacles.get(j).fall = true;	
+       			}
+		}
 	}
     }
 
