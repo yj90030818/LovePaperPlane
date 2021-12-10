@@ -11,6 +11,7 @@ import java.awt.event.KeyEvent;
 public class GameThread extends Thread{
     //idle = 1,dragging = 2,moving = 3,collision = 4,dead = 5
     double time = 0.0,plane_x = 0.0;
+int count = 1;
     Paperplane plane;
     GamePanel p;
         int planeNo = 0;
@@ -43,17 +44,23 @@ public GameThread(GamePanel panel){
         public void Clicked(MouseEvent e){
 		if(!plane.live){
 			if(planeNo < 2){
-			p.planeNum = p.planeNum - 1;
+			count = 1;
                         planeNo = planeNo + 1;
             plane = p.slingShot.planes.get(planeNo);
 			}else{
-				if(p.planeNum == 1){
-				p.planeNum = p.planeNum - 1;
-				}
 				p.loss = true;
 			}
 		}
         }
+        public void Released(MouseEvent e){
+		if(plane.go){
+			if((planeNo <= 2)  && (count == 1)){
+				p.planeNum = p.planeNum - 1;
+				count ++;
+			}
+		}
+        }
+
 
         public void WheelMoved(MouseWheelEvent e){
             plane = p.slingShot.planes.get(planeNo);

@@ -168,6 +168,7 @@ public class GamePanel extends JPanel{
         @Override
         public void mouseReleased(MouseEvent e){
             slingShot.lastpoint(e);
+            t.Released(e);
         }
 
         @Override
