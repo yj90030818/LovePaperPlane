@@ -43,7 +43,7 @@ public class GamePanel extends JPanel{
 	    add(north, BorderLayout.NORTH);
 	this.level = level;
 	planes = setPlanes();
-	slingShot = new Slingshot(50, 400, "images/ps.png",planes);
+	slingShot = new Slingshot(50, 380, "images/ps.png",planes);
 	obstacles = setObstacles();
 	planeNum = planes.size();
         setBackground(Color.white);
