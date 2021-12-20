@@ -61,7 +61,6 @@ public class GamePanel extends JPanel{
 		    LevelFrame l = new LevelFrame();
 		    GamePanel panel = new GamePanel(l,level);
 		    l.add(panel);	
-		    //panel.setVisible(true);
 		    lf.setVisible(false);	    
 		}
 	    });
@@ -153,25 +152,20 @@ public class GamePanel extends JPanel{
 
         for(int i = 0;i < obstacles.size();i++){
         	for(int j = i + 1;j < obstacles.size();j++){
-			boolean pile = obstacles.get(i).getRect().intersects(obstacles.get(j).getRect());
+			boolean pile = obstacles.get(i).getRect().intersects(obstacles.get(j).getRect());		
 			if(pile){
 				obstacles.get(i).fall = false;
 				obstacles.get(j).fall = false;
+				obstacles.get(i).stop = j;
+				obstacles.get(j).stop = i;
 			}else{
-				if(!obstacles.get(i).stop){
-				obstacles.get(i).fall = true;
+				if(obstacles.get(i).stop == j && obstacles.get(j).stop == i){
+					obstacles.get(i).fall = true;
+					obstacles.get(j).fall = true;
 				}
-				if(!obstacles.get(j).stop){
-				obstacles.get(j).fall = true;
-				}
-				if(!obstacles.get(i).live){
-				obstacles.get(i).fall = true;
-				}
-				if(!obstacles.get(j).live){
-				obstacles.get(j).fall = true;
-				}	
-       			}
-		}
+			}
+
+		}	
 	}
 	}else{
 		g.drawImage(backgroundImg,0,0,null);
