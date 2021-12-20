@@ -4,6 +4,7 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -34,9 +35,12 @@ GamePanel gamepanel;
 	    north.setPreferredSize(new Dimension(800,120));
 	    north.setOpaque(false);
 	    add(north, BorderLayout.NORTH);
+
+	    Font f = new Font("Times New Roman",Font.BOLD,40);
 	    
 	    JButton one = new JButton("1 - 1");
-	    one.setPreferredSize(new Dimension(100,50));
+	    one.setPreferredSize(new Dimension(150,200));
+	    one.setFont(f);
 	    one.setContentAreaFilled(false);
 	    one.addActionListener(new ActionListener(){
 	    	@Override
@@ -49,7 +53,8 @@ GamePanel gamepanel;
 	    });
 
 	    JButton two = new JButton("1 - 2");
-	    two.setPreferredSize(new Dimension(100,50));
+	    two.setPreferredSize(new Dimension(150,200));
+	    two.setFont(f);
 	    two.setContentAreaFilled(false);
 	    two.addActionListener(new ActionListener(){
 	    	@Override
@@ -62,7 +67,8 @@ GamePanel gamepanel;
 	    });
 
 	    JButton three = new JButton("1 - 3");
-	    three.setPreferredSize(new Dimension(100,50));
+	    three.setPreferredSize(new Dimension(150,200));
+	    three.setFont(f);
 	    three.setContentAreaFilled(false);
 	    three.addActionListener(new ActionListener(){
 	    	@Override
