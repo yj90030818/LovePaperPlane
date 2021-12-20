@@ -174,6 +174,7 @@ public class GamePanel extends JPanel{
 		}
 	}
 	}else{
+		g.drawImage(backgroundImg,0,0,null);
 		g.drawImage(endImg,200,70,null);
 		if(win){	
 			Font f = new Font("Times New Roman",Font.BOLD,50);
