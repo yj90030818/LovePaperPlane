@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.lang.Math;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 public class Slingshot extends GameObject{
@@ -15,10 +14,8 @@ public class Slingshot extends GameObject{
     double pressed_x = 0.0, pressed_y = 0.0, released_x = 0.0,released_y = 0.0;   //滑鼠按住和放開的座標參數
 
     
-    public Slingshot(double x, double y, int type, String ImgResource, ArrayList<Paperplane> planes){
-        super( x, y, type, ImgResource, planes);
-	//planes.get(i).shoot = true;
-	//setPlane(planes);
+    public Slingshot(double x, double y, String ImgResource, ArrayList<Paperplane> planes){
+        super( x, y, ImgResource, planes);
         this.plane = planes.get(i);
         plane.show = true;
     }
@@ -126,11 +123,5 @@ public class Slingshot extends GameObject{
             }
         }
     }
-    
-    //準備飛機
-    /*public void setPlane(ArrayList<Paperplane> planes){
-	this.plane = planes.get(i);
-	plane.show = true;
-    }*/
 }
 

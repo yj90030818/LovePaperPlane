@@ -1,49 +1,99 @@
-
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JPanel;
+import javax.swing.JButton;
+import javax.swing.ImageIcon;
+import java.awt.Dimension;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.BorderLayout;
 import java.util.ArrayList;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 
 public class GamePanel extends JPanel{
 	boolean win = false;
 	boolean loss = false;
 	boolean finish = false;
 	boolean allStop = false;
+	int planeNum;
+	int level;
     private GameThread t;
-    private ArrayList<Paperplane> planes = setPlanes();
-	int planeNum = planes.size();
-    private ArrayList<Obstacle> obstacles = setObstacles();
-
-//    private Paperplane plane = new Paperplane(55, 400, 1, "images/pp.png");//ArrayList<Paperplane> planes;
-//    private Obstacle obstacle = new Obstacle(650, 300, 2,"images/po.png"); //ArrayList<Obstacle> obstacles;
-//     private ArrayList<Target> targets;
-    public Slingshot slingShot = new Slingshot(50, 400, 3,"images/ps.png",planes);
-    public Target target = new Target(650, 400, 4,"images/pt.png");
+    public ArrayList<Paperplane> planes;
+    public ArrayList<Obstacle> obstacles;
+    public Slingshot slingShot;
+    private Target target = new Target(650, 400, "images/pt.png");
     private PaintThread thread = new PaintThread();
-	Image planeNumImg = GameUtil.getImage(4, "images/pp01.png");
-	Image backgroundImg = GameUtil.getImage(4, "images/pbackground.png");    
-    
-    
-//     public GamePanel(ArrayList<Paperplane> planes, ArrayList<Obstacle> obstacles, Slingshot slingShot){}
-    public GamePanel(){
-	setPlanes();
+	private Image planeNumImg = new ImageIcon("images/pp01.png").getImage();
+	private Image backgroundImg = new ImageIcon("images/pbackground.png").getImage(); 
+	private Image endImg = new ImageIcon("images/pend.png").getImage();
+   	private JButton one;
+   	private JButton two;
+
+    public GamePanel(LevelFrame lf,int level){
+	    setLayout(new BorderLayout());
+
+	    JPanel north = new JPanel();
+	    north.setPreferredSize(new Dimension(800,400));
+	    north.setOpaque(false);
+	    add(north, BorderLayout.NORTH);
+	this.level = level;
+	planes = setPlanes();
+	slingShot = new Slingshot(50, 400, "images/ps.png",planes);
+	obstacles = setObstacles();
+	planeNum = planes.size();
         setBackground(Color.white);
-        //addKeyListener(new KeyMonitor());
         addMouseListener(new MouseMonitor());
         addMouseMotionListener(new MouseMonitor());
         addMouseWheelListener(new MouseMonitor());
+	    one = new JButton("retry");
+	    one.setPreferredSize(new Dimension(100,50));
+	    one.setLocation(100,100);
+	    one.setVisible(false);
+	    one.setBackground(Color.WHITE);
+	    one.addActionListener(new ActionListener(){
+	    	@Override
+		public void actionPerformed(ActionEvent e){
+		    LevelFrame l = new LevelFrame();
+		    GamePanel panel = new GamePanel(l,level);
+		    l.add(panel);	
+		    //panel.setVisible(true);
+		    lf.setVisible(false);	    
+		}
+	    });
+
+	    two = new JButton("next");
+	    two.setPreferredSize(new Dimension(100,50));
+	    two.setLocation(200,100);
+	    two.setVisible(false);		
+	    //two.setContentAreaFilled(false);
+	    two.setBackground(Color.WHITE);
+	    two.addActionListener(new ActionListener(){
+	    	@Override
+		public void actionPerformed(ActionEvent e){
+		    LevelFrame l = new LevelFrame();
+		    lf.setVisible(false);	
+		}
+	    });
+	    JPanel center = new JPanel();
+	    center.setPreferredSize(new Dimension(800,100));
+	    center.setOpaque(false);	
+	    center.add(one);
+	    center.add(two);
+	    add(center, BorderLayout.CENTER);
+
         thread.start();
 	t = new GameThread(this);
 	t.start();
-
     }
     
     @Override
     public void paintComponent(Graphics g){
+	if(!finish){
         super.paintComponent(g);
 	g.drawImage(backgroundImg,0,0,null);
 	g.drawImage(planeNumImg,20,20,null);
@@ -53,9 +103,6 @@ public class GamePanel extends JPanel{
 	g.drawString(" X "+String.valueOf(planeNum),100,48);
 
         Graphics2D g2 = (Graphics2D)g;
-        //g.setColor(Color.BLACK);
-        //g.drawRect(0,0,800,500);
-        //g.drawString(String.valueOf(planes.size()),100,100);
 
         target.drawSelf(g2);
 	for(int i = 0;i < obstacles.size();i++){
@@ -70,6 +117,7 @@ public class GamePanel extends JPanel{
         for(int i = 0;i < obstacles.size();i++){
 	   	obstacles.get(i).drawSelf(g2);
 	}
+
         for(int i = 0;i < planes.size();i++){
         	if(planes.get(i).show){	
 
@@ -77,12 +125,14 @@ public class GamePanel extends JPanel{
         		for(int j = 0;j < obstacles.size();j++){
         			boolean crash = planes.get(i).getRect().intersects(obstacles.get(j).getRect());
         			if(crash){
-            				//planes.get(i).live = false;
+					planes.get(i).fall = true;
             				obstacles.get(j).live = false;
+					obstacles.get(j).setX(obstacles.get(j).getX() + 5);
         			}
         		}
 		}
         }
+
 	for(int i = 0;i < obstacles.size();i++){
 		if(obstacles.get(i).fall){
 			allStop = false;
@@ -90,52 +140,99 @@ public class GamePanel extends JPanel{
 		}
 		allStop = true;
 	}
-		if(allStop){
-			if(win){
-				finish = true;	
-				Font f = new Font("Times New Roman",Font.BOLD,50);
-				g.setFont(f);
-				g.setColor(Color.RED);
-				g.drawString("You Win!",280,250);
-			}
-			if(loss){
-				finish = true;	
-				Font f = new Font("Times New Roman",Font.BOLD,50);
-				g.setFont(f);
-				g.setColor(Color.RED);
-				g.drawString("Try Next Time!",200,250);
-			}
-			
-		}
 
+	if(allStop){
+		if(win){
+			finish = true;		
+		}
+		if(loss){	
+			finish = true;			
+		}
+			
+	}
 
         for(int i = 0;i < obstacles.size();i++){
         	for(int j = i + 1;j < obstacles.size();j++){
-			boolean fall = obstacles.get(i).getRect().intersects(obstacles.get(j).getRect());
-			if(fall){
+			boolean pile = obstacles.get(i).getRect().intersects(obstacles.get(j).getRect());
+			if(pile){
 				obstacles.get(i).fall = false;
 				obstacles.get(j).fall = false;
 			}else{
+				if(!obstacles.get(i).stop){
 				obstacles.get(i).fall = true;
-				obstacles.get(j).fall = true;	
+				}
+				if(!obstacles.get(j).stop){
+				obstacles.get(j).fall = true;
+				}
+				if(!obstacles.get(i).live){
+				obstacles.get(i).fall = true;
+				}
+				if(!obstacles.get(j).live){
+				obstacles.get(j).fall = true;
+				}	
        			}
 		}
 	}
-
+	}else{
+		g.drawImage(endImg,200,70,null);
+		if(win){	
+			Font f = new Font("Times New Roman",Font.BOLD,50);
+			g.setFont(f);
+			g.setColor(Color.RED);
+			g.drawString("You Win!",280,250);
+		}
+		if(loss){	
+			Font f = new Font("Times New Roman",Font.BOLD,50);
+			g.setFont(f);
+			g.setColor(Color.RED);
+			g.drawString("Try Again!",260,250);
+		}
+		one.setVisible(true);
+		two.setVisible(true);
+	}
     }
 
     public ArrayList<Paperplane> setPlanes(){
 	ArrayList<Paperplane> p = new ArrayList<>();
-        for(int i = 1;i <= 3;i++){
-            p.add(new Paperplane(55, 400, 1, "images/pp0" + String.valueOf(i) + ".png"));
+	if(level == 1){
+            for(int i = 1;i <= 3;i++){
+                p.add(new Paperplane(55, 400, "images/pp0" + String.valueOf(i) + ".png"));
+	    }
+	}
+	if(level == 2){
+            for(int i = 1;i <= 2;i++){
+                p.add(new Paperplane(55, 400, "images/pp0" + String.valueOf(i) + ".png"));
+	    }
+	}
+	if(level == 3){
+            for(int i = 1;i <= 1;i++){
+                p.add(new Paperplane(55, 400, "images/pp0" + String.valueOf(i) + ".png"));
+	    }
 	}
 	return p;
     }
     
     public ArrayList<Obstacle> setObstacles(){
 	ArrayList<Obstacle> o = new ArrayList<>();
-        for(int i = 0;i < 2;i++){
-            o.add(new Obstacle(500, 300 - i * 850, 1, "images/po.png"));
+	if(level == 1){	
+            for(int i = 0;i < 2;i++){
+                o.add(new Obstacle(500, 300 - i * 250, "images/po.png"));
+	    }
+	}
+	if(level == 2){	
+	    o.add(new Obstacle(500, 300, "images/po.png"));
+	     for(int i = 0;i < 2;i++){
+                o.add(new Obstacle(230, 300 - i * 250, "images/po.png"));
+	    }
+
+	}
+	if(level == 3){	
+	    for(int i = 0;i < 2;i++){
+                o.add(new Obstacle(500, 300 - i * 250, "images/po.png"));
+	    }
+	    for(int i = 0;i < 2;i++){
+                o.add(new Obstacle(230, 300 - i * 250, "images/po.png"));
+	    }
 	}
 	return o;
     }
@@ -143,7 +240,7 @@ public class GamePanel extends JPanel{
     class PaintThread extends Thread{
         @Override
         public void run(){
-            while(!finish){
+            while(true){
                 repaint();
                 try{
                     Thread.sleep(50);
@@ -153,6 +250,7 @@ public class GamePanel extends JPanel{
             }
         }
     }
+
     class MouseMonitor extends MouseAdapter{
         @Override
         public void mouseClicked(MouseEvent e){
@@ -183,11 +281,4 @@ public class GamePanel extends JPanel{
         }
 
     }
-
-    /*class KeyMonitor extends KeyAdapter{
-        @Override
-        public void keyReleased(KeyEvent e){
-            plane.keyRelease(e);
-        }
-    }*/
 }

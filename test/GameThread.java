@@ -1,15 +1,8 @@
-
-import javax.swing.*;
-import java.awt.*;
 import java.util.ArrayList;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 
 public class GameThread extends Thread{
-    //idle = 1,dragging = 2,moving = 3,collision = 4,dead = 5
     double time = 0.0,plane_x = 0.0;
 int count = 1;
     Paperplane plane;
@@ -25,12 +18,18 @@ public GameThread(GamePanel panel){
         public void run(){
             while(true){
             	if(plane.go){
-                    	    plane_x = plane.x_removing(plane.getV0(),plane.getAngle(),time);
-                    	    plane.setX(plane.getoriginal_x() + plane_x * 4.0 * plane.direction);
-                    	    plane.setY(plane.getoriginal_y() - plane.locus(plane_x,plane.getV0(),plane.getAngle()) * 4.0);			
-                    	    time = time + 0.1;
-            	}else{
+			if(plane.fall){
+				plane.setX(plane.getX() - 2);
+                    	    	plane.setY(plane.getY() + 10);						
+            		}else{
+                	plane_x = plane.x_removing(plane.getV0(),plane.getAngle(),time);
+                	plane.setX(plane.getoriginal_x() + plane_x * 4.0 * plane.direction);
+                	plane.setY(plane.getoriginal_y() - plane.locus(plane_x,plane.getV0(),plane.getAngle()) * 4.0);			
+                	time = time + 0.1;
+			}
+		}else{
 			time = 0.0;
+			count = 1;
 		}
                 try{
                     Thread.sleep(50);
@@ -43,7 +42,7 @@ public GameThread(GamePanel panel){
 
         public void Clicked(MouseEvent e){
 		if(!plane.live){
-			if(planeNo < 2){
+			if(planeNo < p.planes.size() - 1){
 			count = 1;
                         planeNo = planeNo + 1;
             plane = p.slingShot.planes.get(planeNo);
@@ -54,7 +53,7 @@ public GameThread(GamePanel panel){
         }
         public void Released(MouseEvent e){
 		if(plane.go){
-			if((planeNo <= 2)  && (count == 1)){
+			if((planeNo <= p.planes.size() - 1)  && (count == 1)){
 				p.planeNum = p.planeNum - 1;
 				count ++;
 			}

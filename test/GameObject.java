@@ -3,6 +3,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 
 //遊戲物件的父類別，讓子類別可以調用父類別的方法
 public class GameObject{
@@ -14,34 +15,18 @@ public class GameObject{
 
     public GameObject(){}
 
-//     public GameObject(Image img, double x, double y, Paperplane plane){
-//         super();
-//         this.img = img;
-//         this.x = x;
-//         this.y = y;
-//         this.plane = plane;
-//     }
-
-//     public GameObject(Image img, double x, double y){
-//         super();
-//         this.img = img;
-//         this.x = x;
-//         this.y = y;
-//     }
-
-    public GameObject(double x, double y, int type, String ImgResource){
-//         super();
+    public GameObject(double x, double y, String ImgResource){
         this.x = x;
         this.y = y;
-        this.type = type;
-        this.ImgResource = ImgResource;
-        this.img = GameUtil.getImage(type, ImgResource);
+        this.img = new ImageIcon(ImgResource).getImage();
         this.width = img.getWidth(null);
         this.height = img.getHeight(null);
     }
     
-    public GameObject(double x, double y, int type, String ImgResource, ArrayList<Paperplane> planes){
-        this(x, y, type, ImgResource);
+    public GameObject(double x, double y, String ImgResource, ArrayList<Paperplane> planes){
+        this.x = x;
+        this.y = y;
+        this.img = new ImageIcon(ImgResource).getImage();
         this.planes = planes;
     }
     

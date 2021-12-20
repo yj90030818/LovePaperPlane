@@ -6,11 +6,8 @@ import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.BorderLayout;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -27,6 +24,7 @@ GamePanel panel;
         this.setSize(800 , 540);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
+        this.setBackground(Color.PINK);
       
         StartPanel startpanel = new StartPanel(panel);
 	this.add(startpanel, BorderLayout.CENTER);
@@ -37,48 +35,44 @@ GamePanel panel;
 	public StartPanel(GamePanel gamepanel){
 	    super();
 	    setLayout(new BorderLayout());
-	    
-
-
 
 	    JPanel north = new JPanel();
-	    north.setPreferredSize(new Dimension(800,170));
+	    north.setPreferredSize(new Dimension(800,120));
 	    north.setOpaque(false);
 	    add(north, BorderLayout.NORTH);
 	    
-
 	    JButton start = new JButton("Start");
+	    start.setPreferredSize(new Dimension(100,50));
+	    start.setBackground(Color.WHITE);
 	    start.addActionListener(new ActionListener(){
 	    	@Override
 		public void actionPerformed(ActionEvent e){
-		    GamePanel panel = new GamePanel();	
+		    LevelFrame level = new LevelFrame();
+		    /*GamePanel panel = new GamePanel();	
 		    GameFrame.this.add(panel);
-		    panel.setVisible(true);
-		    StartPanel.this.setVisible(false);
+		    panel.setVisible(true);*/
+		    GameFrame.this.setVisible(false);
 		}
 	    });
-	    
-    	    
+	    	    
 	    JButton exit = new JButton("Exit");
+	    exit.setPreferredSize(new Dimension(100,50));
+	    exit.setBackground(Color.WHITE);
 	    exit.addActionListener(new ActionListener(){
 	    	@Override
 		public void actionPerformed(ActionEvent e){
 		    System.exit(0);
 		}
 	    });
-
-
-	 
+ 
 	    JPanel south = new JPanel();
 	    south.setPreferredSize(new Dimension(200,140));
-	    south.setOpaque(false);
-            
+	    south.setOpaque(false);        
 	    south.add(start);
 	    south.add(new JLabel("            "));
 	    south.add(exit);
 	    add(south, BorderLayout.SOUTH);
 			    
-
 	    JPanel center = new JPanel();
 	    center.setPreferredSize(new Dimension(400,200));
 	    center.setOpaque(false);
@@ -86,22 +80,12 @@ GamePanel panel;
             Image logoicon = (new ImageIcon("images/pb.png")).getImage().getScaledInstance(400, 200, Image.SCALE_DEFAULT);
 	    logo.setIcon(new ImageIcon(logoicon));
 	    center.add(logo);
-            add(center, BorderLayout.CENTER);
-	
-	
-
-
-           
-	        
+            add(center, BorderLayout.CENTER);	        
 	}
+
 	@Override
 	public void paintComponent(Graphics g){
-	    g.drawImage(GameUtil.getImage(4, "images/pbackground.png"),0,0,800,540,null);
-	    //g.drawImage(GameUtil.getImage(4, "images/pb.png"),200,170,400,200,null);
-	
-	}
-	
+	    //g.drawImage(new ImageIcon("images/pbackground.png").getImage(),0,0,800,540,null);	
+	}	
      }
-
-
 }
