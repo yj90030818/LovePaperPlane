@@ -3,12 +3,13 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.lang.Math;
+import java.util.ArrayList;
 import java.awt.event.MouseEvent;
 import java.awt.event.KeyEvent;
 
 public class Obstacle extends GameObject{
     boolean live = true,fall = true;
-    int stop;
+    ArrayList<Integer> stop = new ArrayList<Integer>();
     double original_x = 0.0,original_y = 0.0,adjustment = 0.0,angle = 0.0;
     
     public Obstacle(double x, double y, String path){

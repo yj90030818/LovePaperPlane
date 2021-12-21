@@ -1,4 +1,5 @@
 import javax.swing.JPanel;
+import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.Dimension;
@@ -7,6 +8,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.FlowLayout;
 import java.awt.BorderLayout;
 import java.util.ArrayList;
 import java.awt.event.ActionListener;
@@ -31,16 +33,17 @@ public class GamePanel extends JPanel{
 	private Image planeNumImg = new ImageIcon("images/pp01.png").getImage();
 	private Image backgroundImg = new ImageIcon("images/pbackground.png").getImage(); 
 	private Image endImg = new ImageIcon("images/pend.png").getImage();
-   	private JButton one;
-   	private JButton two;
+   	private JButton retry;
+   	private JButton next;
 
     public GamePanel(LevelFrame lf,int level){
 	    setLayout(new BorderLayout());
 
 	    JPanel north = new JPanel();
-	    north.setPreferredSize(new Dimension(800,400));
+	    north.setPreferredSize(new Dimension(800,360));
 	    north.setOpaque(false);
 	    add(north, BorderLayout.NORTH);
+
 	this.level = level;
 	planes = setPlanes();
 	slingShot = new Slingshot(50, 380, "images/ps.png",planes);
@@ -50,12 +53,27 @@ public class GamePanel extends JPanel{
         addMouseListener(new MouseMonitor());
         addMouseMotionListener(new MouseMonitor());
         addMouseWheelListener(new MouseMonitor());
-	    one = new JButton("retry");
-	    one.setPreferredSize(new Dimension(100,50));
-	    one.setLocation(100,100);
-	    one.setVisible(false);
-	    one.setBackground(Color.WHITE);
-	    one.addActionListener(new ActionListener(){
+	    next = new JButton();
+	    next.setPreferredSize(new Dimension(150,100));
+	    next.setVisible(false);
+	    next.setIcon(new ImageIcon("images/bc.png"));
+	    next.setContentAreaFilled(false);	
+	    next.setBorderPainted(false);
+	    next.addActionListener(new ActionListener(){
+	    	@Override
+		public void actionPerformed(ActionEvent e){
+		    LevelFrame l = new LevelFrame();
+		    lf.setVisible(false);	
+		}
+	    });
+
+	    retry = new JButton();
+	    retry.setPreferredSize(new Dimension(150,100));
+	    retry.setVisible(false);
+	    retry.setIcon(new ImageIcon("images/br.png"));		
+	    retry.setContentAreaFilled(false);
+	    retry.setBorderPainted(false);
+	    retry.addActionListener(new ActionListener(){
 	    	@Override
 		public void actionPerformed(ActionEvent e){
 		    LevelFrame l = new LevelFrame();
@@ -65,24 +83,12 @@ public class GamePanel extends JPanel{
 		}
 	    });
 
-	    two = new JButton("next");
-	    two.setPreferredSize(new Dimension(100,50));
-	    two.setLocation(200,100);
-	    two.setVisible(false);		
-	    //two.setContentAreaFilled(false);
-	    two.setBackground(Color.WHITE);
-	    two.addActionListener(new ActionListener(){
-	    	@Override
-		public void actionPerformed(ActionEvent e){
-		    LevelFrame l = new LevelFrame();
-		    lf.setVisible(false);	
-		}
-	    });
 	    JPanel center = new JPanel();
 	    center.setPreferredSize(new Dimension(800,100));
 	    center.setOpaque(false);	
-	    center.add(one);
-	    center.add(two);
+	    center.add(next);	
+	    center.add(new JLabel("                  "));
+	    center.add(retry);
 	    add(center, BorderLayout.CENTER);
 
         thread.start();
@@ -156,12 +162,16 @@ public class GamePanel extends JPanel{
 			if(pile){
 				obstacles.get(i).fall = false;
 				obstacles.get(j).fall = false;
-				obstacles.get(i).stop = j;
-				obstacles.get(j).stop = i;
+				obstacles.get(i).stop.add(j);
+				obstacles.get(j).stop.add(i);
 			}else{
-				if(obstacles.get(i).stop == j && obstacles.get(j).stop == i){
-					obstacles.get(i).fall = true;
-					obstacles.get(j).fall = true;
+        			for(int index1 = 0;index1 < obstacles.get(i).stop.size();index1++){
+        				for(int index2 = 0;index2 < obstacles.get(j).stop.size();index2++){
+						if(obstacles.get(i).stop.get(index1) == j && obstacles.get(j).stop.get(index2) == i){
+							obstacles.get(i).fall = true;
+							obstacles.get(j).fall = true;
+						}
+					}
 				}
 			}
 
@@ -182,8 +192,8 @@ public class GamePanel extends JPanel{
 			g.setColor(Color.RED);
 			g.drawString("Try Again!",260,250);
 		}
-		one.setVisible(true);
-		two.setVisible(true);
+		retry.setVisible(true);
+		next.setVisible(true);
 	}
     }
 
@@ -200,7 +210,7 @@ public class GamePanel extends JPanel{
 	    }
 	}
 	if(level == 3){
-            for(int i = 1;i <= 1;i++){
+            for(int i = 1;i <= 2;i++){
                 p.add(new Paperplane(55, 400, "images/pp0" + String.valueOf(i) + ".png"));
 	    }
 	}
