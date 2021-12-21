@@ -7,7 +7,7 @@ public class GameThread extends Thread{
 int count = 1;
     Paperplane plane;
     GamePanel p;
-        int planeNo = 0;
+        int planeNo = 1;
 
 public GameThread(GamePanel panel){
 	p = panel;
@@ -42,10 +42,14 @@ public GameThread(GamePanel panel){
 
         public void Clicked(MouseEvent e){
 		if(!plane.live){
-			if(planeNo < p.planes.size() - 1){
+			if(p.planes.size() == 1){
+				p.loss = true;
+				p.finish = true;
+			}				
+			if(planeNo < p.planes.size()){
 			count = 1;
                         planeNo = planeNo + 1;
-            plane = p.slingShot.planes.get(planeNo);
+            plane = p.slingShot.planes.get(planeNo - 1);
 			}else{
 				p.loss = true;
 			}
@@ -53,7 +57,7 @@ public GameThread(GamePanel panel){
         }
         public void Released(MouseEvent e){
 		if(plane.go){
-			if((planeNo <= p.planes.size() - 1)  && (count == 1)){
+			if((planeNo <= p.planes.size())  && (count == 1)){
 				p.planeNum = p.planeNum - 1;
 				count ++;
 			}
@@ -62,6 +66,6 @@ public GameThread(GamePanel panel){
 
 
         public void WheelMoved(MouseWheelEvent e){
-            plane = p.slingShot.planes.get(planeNo);
+            plane = p.slingShot.planes.get(planeNo - 1);
         }
 }

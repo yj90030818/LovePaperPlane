@@ -14,14 +14,17 @@ import java.awt.event.ActionEvent;
 
 public class LevelFrame extends JFrame{
 GamePanel gamepanel;
-    public LevelFrame(){
+LevelPanel levelpanel;
+int ending;
+    public LevelFrame(int ending){
+	this.ending = ending;
         this.setTitle("Love PaperPlane");
         this.setSize(800 , 540);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	this.setVisible(true);
         this.setResizable(false);
       
-        LevelPanel levelpanel = new LevelPanel(gamepanel);
+        levelpanel = new LevelPanel(gamepanel);
 	this.add(levelpanel, BorderLayout.CENTER);
     }
 	
@@ -79,6 +82,20 @@ GamePanel gamepanel;
 		    LevelPanel.this.setVisible(false);
 		}
 	    });
+
+	    JButton special = new JButton("1 - ?");
+	    special.setPreferredSize(new Dimension(150,200));
+	    special.setFont(f);
+	    special.setContentAreaFilled(false);
+	    special.addActionListener(new ActionListener(){
+	    	@Override
+		public void actionPerformed(ActionEvent e){
+		    GamePanel panel = new GamePanel(LevelFrame.this,4);	
+		    LevelFrame.this.add(panel);
+		    panel.setVisible(true);
+		    LevelPanel.this.setVisible(false);
+		}
+	    });
 			    
 	    JPanel center = new JPanel();
 	    center.setPreferredSize(new Dimension(400,200));
@@ -86,7 +103,17 @@ GamePanel gamepanel;
 	    center.add(one);
 	    center.add(two);
 	    center.add(three);
-            add(center, BorderLayout.CENTER);	        
+	    if(ending == 1){
+	    	center.add(special);
+	    }
+            add(center, BorderLayout.CENTER);
+	    
+	    /*JPanel south = new JPanel();
+	    south.setPreferredSize(new Dimension(400,200));
+	    south.setOpaque(false);
+	    south.add(special);
+            add(south, BorderLayout.SOUTH);*/
+    
 	}
 
 	@Override

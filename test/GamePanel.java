@@ -22,19 +22,24 @@ public class GamePanel extends JPanel{
 	boolean loss = false;
 	boolean finish = false;
 	boolean allStop = false;
+	boolean ending = false;
 	int planeNum;
 	int level;
+	int time = 0;
+	int back = 0;
+	int sadtime = 1;
     private GameThread t;
     public ArrayList<Paperplane> planes;
     public ArrayList<Obstacle> obstacles;
     public Slingshot slingShot;
-    private Target target = new Target(650, 400, "images/pt.png");
+    private Target target;
     private PaintThread thread = new PaintThread();
 	private Image planeNumImg = new ImageIcon("images/pp01.png").getImage();
 	private Image backgroundImg = new ImageIcon("images/pbackground.png").getImage(); 
 	private Image endImg = new ImageIcon("images/pend.png").getImage();
    	private JButton retry;
    	private JButton next;
+   	private JButton BackToStartFrame;
 
     public GamePanel(LevelFrame lf,int level){
 	    setLayout(new BorderLayout());
@@ -48,11 +53,17 @@ public class GamePanel extends JPanel{
 	planes = setPlanes();
 	slingShot = new Slingshot(50, 380, "images/ps.png",planes);
 	obstacles = setObstacles();
+	if(level == 4){
+		target = new Target(650, 380, "images/girl/Idle.png");
+	}else{
+		target = new Target(650, 400, "images/pt.png");
+	}
 	planeNum = planes.size();
         setBackground(Color.white);
         addMouseListener(new MouseMonitor());
         addMouseMotionListener(new MouseMonitor());
         addMouseWheelListener(new MouseMonitor());
+
 	    next = new JButton();
 	    next.setPreferredSize(new Dimension(150,100));
 	    next.setVisible(false);
@@ -62,7 +73,26 @@ public class GamePanel extends JPanel{
 	    next.addActionListener(new ActionListener(){
 	    	@Override
 		public void actionPerformed(ActionEvent e){
-		    LevelFrame l = new LevelFrame();
+		    if((level == 3) && win){
+			LevelFrame l = new LevelFrame(1);
+		    }else{		
+		    	LevelFrame l = new LevelFrame(lf.ending);
+		    }		
+		    lf.setVisible(false);	
+		}
+	    });
+
+	    BackToStartFrame = new JButton();
+	    BackToStartFrame.setPreferredSize(new Dimension(150,100));
+	    BackToStartFrame.setVisible(false);
+	    BackToStartFrame.setIcon(new ImageIcon("images/btsf.png"));
+	    BackToStartFrame.setBackground(Color.BLACK);	
+	    BackToStartFrame.setBorderPainted(false);
+	    BackToStartFrame.addActionListener(new ActionListener(){
+	    	@Override
+		public void actionPerformed(ActionEvent e){			
+		    GameFrame g = new GameFrame();
+		    g.setVisible(true);		
 		    lf.setVisible(false);	
 		}
 	    });
@@ -76,7 +106,7 @@ public class GamePanel extends JPanel{
 	    retry.addActionListener(new ActionListener(){
 	    	@Override
 		public void actionPerformed(ActionEvent e){
-		    LevelFrame l = new LevelFrame();
+		    LevelFrame l = new LevelFrame(lf.ending);	
 		    GamePanel panel = new GamePanel(l,level);
 		    l.add(panel);	
 		    lf.setVisible(false);	    
@@ -86,8 +116,10 @@ public class GamePanel extends JPanel{
 	    JPanel center = new JPanel();
 	    center.setPreferredSize(new Dimension(800,100));
 	    center.setOpaque(false);	
-	    center.add(next);	
-	    center.add(new JLabel("                  "));
+	    center.add(next);
+	    center.add(new JLabel("         "));
+	    center.add(BackToStartFrame);	
+	    center.add(new JLabel("         "));
 	    center.add(retry);
 	    add(center, BorderLayout.CENTER);
 
@@ -98,16 +130,15 @@ public class GamePanel extends JPanel{
     
     @Override
     public void paintComponent(Graphics g){
-	if(!finish){
+	Graphics2D g2 = (Graphics2D)g;
+	if(!finish && !ending){
         super.paintComponent(g);
-	g.drawImage(backgroundImg,0,0,null);
+        g.drawImage(backgroundImg,0,0,null);
 	g.drawImage(planeNumImg,20,20,null);
 	Font planeNumFont = new Font("Times New Roman",Font.BOLD,20);
 	g.setFont(planeNumFont);
 	g.setColor(Color.BLACK);
 	g.drawString(" X "+String.valueOf(planeNum),100,48);
-
-        Graphics2D g2 = (Graphics2D)g;
 
         target.drawSelf(g2);
 	for(int i = 0;i < obstacles.size();i++){
@@ -145,6 +176,14 @@ public class GamePanel extends JPanel{
 		}
 		allStop = true;
 	}
+	
+	if(level == 4){
+		boolean love = planes.get(0).getRect().intersects(target.getRect());
+		if(love){
+			planes.get(0).go = false;
+			ending = true;
+		}		
+	}
 
 	if(allStop){
 		if(win){
@@ -177,6 +216,53 @@ public class GamePanel extends JPanel{
 
 		}	
 	}
+	}
+	else if(ending){
+		if(time < 200){
+			g.drawImage(backgroundImg,0,0,null);
+			slingShot.drawSelf(g2);
+		}else{
+			g.setColor(Color.BLACK);			
+			if(sadtime <= 110){
+				g.fillRect(0,0,800,5 * sadtime);
+			}else{
+				g.drawImage(new ImageIcon("images/theEnd.jpg").getImage(),0,0,null);
+				if(sadtime >= 150){
+					BackToStartFrame.setVisible(true);
+				}
+			}
+			sadtime++;
+		}
+	
+		if((650 - time * 10) >= 200){		
+			g.drawImage(new ImageIcon("images/girl/girl (" + String.valueOf((time + 1)%22) + ").png").getImage(),650 - time *10,380,null);
+			time++;
+			if(time%22 == 0){
+				time++;
+			}
+		}else{
+			if(time < 130){
+				if(time > 60 && time < 80){				
+					g.drawImage(new ImageIcon("images/girl/heart.png").getImage(),120,290,null);
+				}
+				if(time > 80 && time < 110){
+					g.drawImage(new ImageIcon("images/girl/talk01.png").getImage(),280,150,null);
+				}
+				if(time > 90){
+					g.drawImage(new ImageIcon("images/girl/heartbreak.png").getImage(),120,290,null);
+				}
+				g.drawImage(new ImageIcon("images/girl/girl (1).png").getImage(),200,380,null);
+						
+			}
+			if(time >= 130){
+				g.drawImage(new ImageIcon("images/girl/girl (" + String.valueOf((back + 1)%22) + ").png").getImage(),300 + back *10,380,-110,120,null);
+				back++;
+				if(back%22 == 0){
+					back++;
+				}
+			}							
+			time++;
+		}		
 	}else{
 		g.drawImage(backgroundImg,0,0,null);
 		g.drawImage(endImg,200,70,null);
@@ -195,6 +281,7 @@ public class GamePanel extends JPanel{
 		retry.setVisible(true);
 		next.setVisible(true);
 	}
+		
     }
 
     public ArrayList<Paperplane> setPlanes(){
@@ -211,6 +298,11 @@ public class GamePanel extends JPanel{
 	}
 	if(level == 3){
             for(int i = 1;i <= 2;i++){
+                p.add(new Paperplane(55, 400, "images/pp0" + String.valueOf(i) + ".png"));
+	    }
+	}
+	if(level == 4){
+            for(int i = 1;i <= 1;i++){
                 p.add(new Paperplane(55, 400, "images/pp0" + String.valueOf(i) + ".png"));
 	    }
 	}

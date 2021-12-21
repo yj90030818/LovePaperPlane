@@ -14,7 +14,8 @@ import java.awt.event.ActionEvent;
 
 public class GameFrame extends JFrame{
 GamePanel panel;
-    
+StartPanel  startpanel;
+   
     public static void main(String[] args){
         GameFrame f = new GameFrame();
         f.setVisible(true);
@@ -27,7 +28,7 @@ GamePanel panel;
         this.setResizable(false);
         this.setBackground(Color.PINK);
       
-        StartPanel startpanel = new StartPanel(panel);
+        startpanel = new StartPanel(panel);
 	this.add(startpanel, BorderLayout.CENTER);
     }
 	
@@ -50,7 +51,7 @@ GamePanel panel;
 	    start.addActionListener(new ActionListener(){
 	    	@Override
 		public void actionPerformed(ActionEvent e){
-		    LevelFrame level = new LevelFrame();
+		    LevelFrame level = new LevelFrame(0);
 		    /*GamePanel panel = new GamePanel();	
 		    GameFrame.this.add(panel);
 		    panel.setVisible(true);*/
