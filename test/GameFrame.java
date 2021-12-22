@@ -22,7 +22,7 @@ StartPanel  startpanel;
     }
 
     public GameFrame(){
-        this.setTitle("Love PaperPlane");
+        this.setTitle("Love Story Papper Plane");
         this.setSize(800 , 540);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
