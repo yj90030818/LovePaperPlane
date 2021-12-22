@@ -18,7 +18,7 @@ LevelPanel levelpanel;
 int ending;
     public LevelFrame(int ending){
 	this.ending = ending;
-        this.setTitle("Love Story Papper Plane");
+        this.setTitle("Love Story : Papper Plane");
         this.setSize(800 , 540);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	this.setVisible(true);
