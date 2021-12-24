@@ -38,7 +38,7 @@
 ## 開發軟體工具安裝之順序步驟與設定
 > 本遊戲主要適用於Java 8 版本  
 > 下載 OpenJDK :  
->> 可使用***檔案中所附之msi安裝檔*** 或 ***自行前往https://adoptopenjdk.net/index.html?variant=openjdk8&jvmVariant=hotspot網站下載***  
+>> 可使用***檔案中所附之msi安裝檔*** 或 ***自行前往https://adoptopenjdk.net/index.html?variant=openjdk8&jvmVariant=hotspot 網站下載***  
 >> (若自行下載請選擇 Java 8 版本)  
 > 安裝 OpenJDK : 
 >> 1. 開啟msi安裝檔
