@@ -3,7 +3,7 @@
 
 ## 檔案性質
 > ### 遊戲主體程式 
-
+>本遊戲所有皆遊戲程式放置於LoveStoryPapperPlane資料夾中。
 - ***GameFrame.java*** : 遊戲主程式，也是主畫面視窗的物件。
 - ***GameObject.java*** : 遊戲中所有互動物件之父類別。
 - ***GamePanel.java*** : 遊戲關卡中圖片繪製與主要操作的版面。
