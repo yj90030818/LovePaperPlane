@@ -38,11 +38,19 @@
 ## 開發軟體工具安裝之順序步驟與設定
 > 本遊戲主要適用於Java 8 版本  
 > 下載 OpenJDK :  
-> 可使用***檔案中所附之msi安裝檔***
-> 
+>> 可使用***檔案中所附之msi安裝檔*** 或 ***自行前往https://adoptopenjdk.net/index.html?variant=openjdk8&jvmVariant=hotspot網站下載***  
+>> (若自行下載請選擇 Java 8 版本)  
+> 安裝 OpenJDK : 
+>> 1. 開啟msi安裝檔
+>> 2. 點選下一步 
+>> 3. 確定JDK with Hostspot選項、Add to PATH選項、Associate .jar選項前圖示並非打叉  
+>> (若打叉可點選前面圖示並選擇則 __將安裝在本機硬碟上__)
 
 ## 自行開發程式碼之安裝設定
 
 ## 遊戲規則與操作說明
-
+### 主畫面
+> 開啟遊戲後會進入主畫面，並會顯示兩個按鈕 ***Play*** 與 ***Exit***  
+> 1. 點選 ***Play*** 會進入關卡選擇頁面
+> 2. 點選 
 ## 如何測試安裝成功之步驟
